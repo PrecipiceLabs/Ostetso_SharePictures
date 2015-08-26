@@ -1,0 +1,15 @@
+# Ignore file stuff that are downloaded from other servers #
+############################################################
+Pods
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
