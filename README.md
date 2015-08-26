@@ -8,7 +8,7 @@ About
 **SharePictures** is a project used to demonstrate how to integrate the Ostetso framework into a photo sharing app.  SharePictures uses the [GPUImage SDK](https://github.com/BradLarson/GPUImage) to apply simple image filters to photos and, via Ostetso, to share them with other users and friends.
 
 Instructions for building 
-———————
+--------------
 
 - Download the SharePictures project to your Mac.
 - This project integrates GPUImage as a [CocoaPods](https://cocoapods.org/) project.  This is super easy to configure to use with SharePictures.  If you aren’t already using CocoaPods, from the command line run :
