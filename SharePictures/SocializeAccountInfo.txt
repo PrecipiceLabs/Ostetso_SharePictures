@@ -1,0 +1,7 @@
+Consumer Key: befee752-dcef-41d5-91ec-c567aac12b29
+
+Consumer Secret: 0708fd78-11d8-4172-9136-f1b99e3434af
+
+Socialize App ID: 457038
+
+App URL: http://r.getsocialize.com/a/457038

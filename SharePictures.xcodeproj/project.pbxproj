@@ -1,0 +1,776 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30139BAC16272D6100B0547C /* FFInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* FFInfoDialogVC.m */; };
+		302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */; };
+		302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */; };
+		302F3EC41627885F00DA4C07 /* FFInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */; };
+		303CCE9F1938FFF700F7A90D /* ViewGalleryIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 303CCE9E1938FFF700F7A90D /* ViewGalleryIcon@2x.png */; };
+		303CCEA31939029F00F7A90D /* ViewGalleryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 303CCEA21939029F00F7A90D /* ViewGalleryIcon.png */; };
+		30479D641624DF620030C250 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30479D621624DF620030C250 /* Localizable.strings */; };
+		30505E311617A02D00DDB111 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30505E301617A02D00DDB111 /* OpenGLES.framework */; };
+		305538391937F5C2002CDA9F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 305538381937F5C2002CDA9F /* libsqlite3.0.dylib */; };
+		3061E862161A794C00E437D1 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3061E861161A794C00E437D1 /* CoreImage.framework */; };
+		30772BB21AE079C200CC0B9D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3055383A1937F625002CDA9F /* AdSupport.framework */; };
+		30925ACF1669808C00239956 /* FFEffectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 30925ACE1669808C00239956 /* FFEffectInfo.m */; };
+		309CE55B1603B14400F1FAF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55A1603B14400F1FAF5 /* UIKit.framework */; };
+		309CE55D1603B14400F1FAF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55C1603B14400F1FAF5 /* Foundation.framework */; };
+		309CE5651603B14400F1FAF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 309CE5631603B14400F1FAF5 /* InfoPlist.strings */; };
+		309CE5671603B14400F1FAF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE5661603B14400F1FAF5 /* main.m */; };
+		309CE56B1603B14400F1FAF5 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */; };
+		309CE56E1603B14400F1FAF5 /* FFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56D1603B14400F1FAF5 /* FFViewController.m */; };
+		309CE5711603B14400F1FAF5 /* FFViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */; };
+		309CE58C1608F7E100F1FAF5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE58B1608F7E100F1FAF5 /* AVFoundation.framework */; };
+		309CE58E1609039500F1FAF5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE58D1609039500F1FAF5 /* CoreVideo.framework */; };
+		309CE5911609252200F1FAF5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE5901609252200F1FAF5 /* AssetsLibrary.framework */; };
+		309CE5931609273000F1FAF5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE5921609273000F1FAF5 /* CoreMedia.framework */; };
+		30A72C9E18E4DC1300E5CA9E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A72C9D18E4DC1300E5CA9E /* Accelerate.framework */; };
+		30BAAA02166D3464005189F2 /* effects in Resources */ = {isa = PBXBuildFile; fileRef = 30BAAA01166D3464005189F2 /* effects */; };
+		30CA1B501623B6EB00F29A7E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CA1B4F1623B6EB00F29A7E /* MobileCoreServices.framework */; };
+		30CA1B541623B7A400F29A7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CA1B531623B7A400F29A7E /* SystemConfiguration.framework */; };
+		30DA060616251F81006DBCE7 /* swapcam_hilite.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060216251F81006DBCE7 /* swapcam_hilite.png */; };
+		30DA060716251F81006DBCE7 /* swapcam_hilite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060316251F81006DBCE7 /* swapcam_hilite@2x.png */; };
+		30DA060816251F81006DBCE7 /* swapcam.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060416251F81006DBCE7 /* swapcam.png */; };
+		30DA060916251F81006DBCE7 /* swapcam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060516251F81006DBCE7 /* swapcam@2x.png */; };
+		30DA061F1625F956006DBCE7 /* FFViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */; };
+		30F5E08A1B681F5E00DBB713 /* Ostetso.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30F5E0881B681F5E00DBB713 /* Ostetso.bundle */; };
+		30F5E08B1B681F5E00DBB713 /* Ostetso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F5E0891B681F5E00DBB713 /* Ostetso.framework */; };
+		861BC090163F9FA0009E5084 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861BC08F163F9FA0009E5084 /* QuartzCore.framework */; };
+		861BC091163F9FB8009E5084 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55E1603B14400F1FAF5 /* CoreGraphics.framework */; };
+		B5312FA1F86E68192A571C01 /* libPods-SharePictures.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0FB004AC7F980A406247DA /* libPods-SharePictures.a */; };
+		B95AC9EA1AADB14C004F09FC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95AC9E81AADB14B004F09FC /* HomeViewController.m */; };
+		B95AC9EB1AADB14C004F09FC /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9E91AADB14B004F09FC /* HomeViewController.xib */; };
+		B95AC9EF1AADB1A4004F09FC /* HomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */; };
+		B95AC9FD1AADC569004F09FC /* ShareShutter.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9F91AADC569004F09FC /* ShareShutter.png */; };
+		B95AC9FE1AADC569004F09FC /* ShareShutter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9FA1AADC569004F09FC /* ShareShutter@2x.png */; };
+		B95AC9FF1AADC569004F09FC /* UseCamera_HomescreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9FB1AADC569004F09FC /* UseCamera_HomescreenButton.png */; };
+		B95ACA001AADC569004F09FC /* UseCamera_HomescreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9FC1AADC569004F09FC /* UseCamera_HomescreenButton@2x.png */; };
+		B95ACA031AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA011AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png */; };
+		B95ACA041AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA021AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png */; };
+		B95ACA071AADC5E7004F09FC /* GotoGallery_HomescreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA051AADC5E7004F09FC /* GotoGallery_HomescreenButton.png */; };
+		B95ACA081AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA061AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png */; };
+		B95ACA0F1AADDA01004F09FC /* HomeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA0D1AADDA01004F09FC /* HomeButton.png */; };
+		B95ACA101AADDA01004F09FC /* HomeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95ACA0E1AADDA01004F09FC /* HomeButton@2x.png */; };
+		B9A3C3CD1AA1AB880064D1A2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A3C3CC1AA1AB870064D1A2 /* ImageIO.framework */; };
+		B9AC53F61AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AC53F41AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png */; };
+		B9AC53F71AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9AC53F51AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png */; };
+		B9B4EE591AB1AC4B0071CB5B /* HomeInfoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B4EE571AB1AC4B0071CB5B /* HomeInfoButton.png */; };
+		B9B4EE5A1AB1AC4B0071CB5B /* HomeInfoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B4EE581AB1AC4B0071CB5B /* HomeInfoButton@2x.png */; };
+		B9DBF3A51AA6C78500F23CFA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DBF3A41AA6C78500F23CFA /* CoreMotion.framework */; };
+		E41465961939426A000B79BE /* SharePictures_Info.html in Resources */ = {isa = PBXBuildFile; fileRef = E41465951939426A000B79BE /* SharePictures_Info.html */; };
+		E414659E1939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png in Resources */ = {isa = PBXBuildFile; fileRef = E41465991939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png */; };
+		E414659F1939428C000B79BE /* SharePictures_Sharing_Grid.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659A1939428C000B79BE /* SharePictures_Sharing_Grid.png */; };
+		E41465A01939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659B1939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png */; };
+		E41465A11939428C000B79BE /* SharePictures_RestartButton_InfoPageGraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659C1939428C000B79BE /* SharePictures_RestartButton_InfoPageGraphic.png */; };
+		E4E20D351627E76400A206CD /* InfoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D331627E76400A206CD /* InfoButton.png */; };
+		E4E20D361627E76400A206CD /* InfoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D341627E76400A206CD /* InfoButton@2x.png */; };
+		E4E20D3B1627E87B00A206CD /* CameraShutter_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D371627E87B00A206CD /* CameraShutter_pressed.png */; };
+		E4E20D3C1627E87B00A206CD /* CameraShutter_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D381627E87B00A206CD /* CameraShutter_pressed@2x.png */; };
+		E4E20D3D1627E87B00A206CD /* CameraShutter.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D391627E87B00A206CD /* CameraShutter.png */; };
+		E4E20D3E1627E87B00A206CD /* CameraShutter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4E20D3A1627E87B00A206CD /* CameraShutter@2x.png */; };
+		E4EA49F51624D4BB00BC3F44 /* FlashToggle.png in Resources */ = {isa = PBXBuildFile; fileRef = E4EA49EF1624D4BB00BC3F44 /* FlashToggle.png */; };
+		E4EA49F61624D4BB00BC3F44 /* FlashToggle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4EA49F01624D4BB00BC3F44 /* FlashToggle@2x.png */; };
+		E4FA28E4191EC8F40090FA0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4FA28E3191EC8F40090FA0F /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30139BAA16272D6100B0547C /* FFInfoDialogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInfoDialogVC.h; sourceTree = "<group>"; };
+		30139BAB16272D6100B0547C /* FFInfoDialogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInfoDialogVC.m; sourceTree = "<group>"; };
+		302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GotoGallery_HomescreenButton_WithBadge.png; path = SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge.png; sourceTree = "<group>"; };
+		302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GotoGallery_HomescreenButton_WithBadge@2x.png"; path = "SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge@2x.png"; sourceTree = "<group>"; };
+		302F3EC31627885F00DA4C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFInfoDialogVC.xib; sourceTree = "<group>"; };
+		3036E2C41910339E00BD4ABE /* SharePictures-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SharePictures-Info.plist"; sourceTree = "<group>"; };
+		303CCE9E1938FFF700F7A90D /* ViewGalleryIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ViewGalleryIcon@2x.png"; sourceTree = "<group>"; };
+		303CCEA21939029F00F7A90D /* ViewGalleryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewGalleryIcon.png; sourceTree = "<group>"; };
+		30479D631624DF620030C250 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		30505E301617A02D00DDB111 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		305538381937F5C2002CDA9F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3055383A1937F625002CDA9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3061E861161A794C00E437D1 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		30925ACD1669808C00239956 /* FFEffectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFEffectInfo.h; sourceTree = "<group>"; };
+		30925ACE1669808C00239956 /* FFEffectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFEffectInfo.m; sourceTree = "<group>"; };
+		309CE5561603B14400F1FAF5 /* SharePictures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharePictures.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		309CE55A1603B14400F1FAF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		309CE55C1603B14400F1FAF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		309CE55E1603B14400F1FAF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		309CE5641603B14400F1FAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		309CE5661603B14400F1FAF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		309CE5681603B14400F1FAF5 /* SharePictures-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SharePictures-Prefix.pch"; sourceTree = "<group>"; };
+		309CE5691603B14400F1FAF5 /* FFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
+		309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
+		309CE56C1603B14400F1FAF5 /* FFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFViewController.h; sourceTree = "<group>"; };
+		309CE56D1603B14400F1FAF5 /* FFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFViewController.m; sourceTree = "<group>"; };
+		309CE5701603B14400F1FAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FFViewController_iPhone.xib; sourceTree = "<group>"; };
+		309CE58B1608F7E100F1FAF5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		309CE58D1609039500F1FAF5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		309CE5901609252200F1FAF5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		309CE5921609273000F1FAF5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		30A72C9D18E4DC1300E5CA9E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		30BAAA01166D3464005189F2 /* effects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = effects; path = SharePictures/Resources/effects; sourceTree = "<group>"; };
+		30CA1B4F1623B6EB00F29A7E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		30CA1B531623B7A400F29A7E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		30DA060216251F81006DBCE7 /* swapcam_hilite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapcam_hilite.png; sourceTree = "<group>"; };
+		30DA060316251F81006DBCE7 /* swapcam_hilite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swapcam_hilite@2x.png"; sourceTree = "<group>"; };
+		30DA060416251F81006DBCE7 /* swapcam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapcam.png; sourceTree = "<group>"; };
+		30DA060516251F81006DBCE7 /* swapcam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swapcam@2x.png"; sourceTree = "<group>"; };
+		30DA061E1625F956006DBCE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFViewController_iPad.xib; sourceTree = "<group>"; };
+		30F5E0881B681F5E00DBB713 /* Ostetso.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Ostetso.bundle; path = Ostetso/Ostetso.bundle; sourceTree = "<group>"; };
+		30F5E0891B681F5E00DBB713 /* Ostetso.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ostetso.framework; path = Ostetso/Ostetso.framework; sourceTree = "<group>"; };
+		7F6792284F40E28EAC27A1C7 /* Pods-SharePictures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePictures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharePictures/Pods-SharePictures.debug.xcconfig"; sourceTree = "<group>"; };
+		861BC089163F4A3E009E5084 /* SharePictures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SharePictures.entitlements; sourceTree = "<group>"; };
+		861BC08F163F9FA0009E5084 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9F0FB004AC7F980A406247DA /* libPods-SharePictures.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharePictures.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58EE353BE09664F682E511D /* Pods-SharePictures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePictures.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharePictures/Pods-SharePictures.release.xcconfig"; sourceTree = "<group>"; };
+		B95AC9E71AADB14B004F09FC /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		B95AC9E81AADB14B004F09FC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B95AC9E91AADB14B004F09FC /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = SharePictures/HomeViewController.xib; sourceTree = "<group>"; };
+		B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController_iPad.xib; path = SharePictures/HomeViewController_iPad.xib; sourceTree = "<group>"; };
+		B95AC9F91AADC569004F09FC /* ShareShutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareShutter.png; path = SharePictures/Resources/HomeScreenImages/ShareShutter.png; sourceTree = "<group>"; };
+		B95AC9FA1AADC569004F09FC /* ShareShutter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ShareShutter@2x.png"; path = "SharePictures/Resources/HomeScreenImages/ShareShutter@2x.png"; sourceTree = "<group>"; };
+		B95AC9FB1AADC569004F09FC /* UseCamera_HomescreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UseCamera_HomescreenButton.png; path = SharePictures/Resources/HomeScreenImages/UseCamera_HomescreenButton.png; sourceTree = "<group>"; };
+		B95AC9FC1AADC569004F09FC /* UseCamera_HomescreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UseCamera_HomescreenButton@2x.png"; path = "SharePictures/Resources/HomeScreenImages/UseCamera_HomescreenButton@2x.png"; sourceTree = "<group>"; };
+		B95ACA011AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoadPhoto_HomescreenButton.png; path = SharePictures/Resources/HomeScreenImages/LoadPhoto_HomescreenButton.png; sourceTree = "<group>"; };
+		B95ACA021AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LoadPhoto_HomescreenButton@2x.png"; path = "SharePictures/Resources/HomeScreenImages/LoadPhoto_HomescreenButton@2x.png"; sourceTree = "<group>"; };
+		B95ACA051AADC5E7004F09FC /* GotoGallery_HomescreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GotoGallery_HomescreenButton.png; path = SharePictures/Resources/HomeScreenImages/GotoGallery_HomescreenButton.png; sourceTree = "<group>"; };
+		B95ACA061AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GotoGallery_HomescreenButton@2x.png"; path = "SharePictures/Resources/HomeScreenImages/GotoGallery_HomescreenButton@2x.png"; sourceTree = "<group>"; };
+		B95ACA0D1AADDA01004F09FC /* HomeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeButton.png; path = SharePictures/Resources/HomeScreenImages/HomeButton.png; sourceTree = "<group>"; };
+		B95ACA0E1AADDA01004F09FC /* HomeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeButton@2x.png"; path = "SharePictures/Resources/HomeScreenImages/HomeButton@2x.png"; sourceTree = "<group>"; };
+		B9A3C3CC1AA1AB870064D1A2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		B9AC53F41AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SharePictures_HomePage_Banner.png; path = SharePictures/Resources/HomeScreenImages/SharePictures_HomePage_Banner.png; sourceTree = "<group>"; };
+		B9AC53F51AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SharePictures_HomePage_Banner@2x.png"; path = "SharePictures/Resources/HomeScreenImages/SharePictures_HomePage_Banner@2x.png"; sourceTree = "<group>"; };
+		B9B4EE571AB1AC4B0071CB5B /* HomeInfoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HomeInfoButton.png; path = SharePictures/Resources/HomeScreenImages/HomeInfoButton.png; sourceTree = "<group>"; };
+		B9B4EE581AB1AC4B0071CB5B /* HomeInfoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HomeInfoButton@2x.png"; path = "SharePictures/Resources/HomeScreenImages/HomeInfoButton@2x.png"; sourceTree = "<group>"; };
+		B9DBF3A41AA6C78500F23CFA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E41465951939426A000B79BE /* SharePictures_Info.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SharePictures_Info.html; sourceTree = "<group>"; };
+		E41465991939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SharePictures_InfoPage_Banner_toosmallmaybe.png; sourceTree = "<group>"; };
+		E414659A1939428C000B79BE /* SharePictures_Sharing_Grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SharePictures_Sharing_Grid.png; sourceTree = "<group>"; };
+		E414659B1939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SharePictures_ShareButton_InfoPageGraphic.png; sourceTree = "<group>"; };
+		E414659C1939428C000B79BE /* SharePictures_RestartButton_InfoPageGraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SharePictures_RestartButton_InfoPageGraphic.png; sourceTree = "<group>"; };
+		E414659D1939428C000B79BE /* SharePictures_InfoPage_Banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SharePictures_InfoPage_Banner.png; sourceTree = "<group>"; };
+		E4E20D331627E76400A206CD /* InfoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InfoButton.png; sourceTree = "<group>"; };
+		E4E20D341627E76400A206CD /* InfoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfoButton@2x.png"; sourceTree = "<group>"; };
+		E4E20D371627E87B00A206CD /* CameraShutter_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraShutter_pressed.png; sourceTree = "<group>"; };
+		E4E20D381627E87B00A206CD /* CameraShutter_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraShutter_pressed@2x.png"; sourceTree = "<group>"; };
+		E4E20D391627E87B00A206CD /* CameraShutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraShutter.png; sourceTree = "<group>"; };
+		E4E20D3A1627E87B00A206CD /* CameraShutter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CameraShutter@2x.png"; sourceTree = "<group>"; };
+		E4EA49EF1624D4BB00BC3F44 /* FlashToggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlashToggle.png; sourceTree = "<group>"; };
+		E4EA49F01624D4BB00BC3F44 /* FlashToggle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FlashToggle@2x.png"; sourceTree = "<group>"; };
+		E4FA28E3191EC8F40090FA0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		309CE5531603B14400F1FAF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30772BB21AE079C200CC0B9D /* AdSupport.framework in Frameworks */,
+				B9DBF3A51AA6C78500F23CFA /* CoreMotion.framework in Frameworks */,
+				B9A3C3CD1AA1AB880064D1A2 /* ImageIO.framework in Frameworks */,
+				305538391937F5C2002CDA9F /* libsqlite3.0.dylib in Frameworks */,
+				30A72C9E18E4DC1300E5CA9E /* Accelerate.framework in Frameworks */,
+				861BC091163F9FB8009E5084 /* CoreGraphics.framework in Frameworks */,
+				861BC090163F9FA0009E5084 /* QuartzCore.framework in Frameworks */,
+				30F5E08B1B681F5E00DBB713 /* Ostetso.framework in Frameworks */,
+				30CA1B541623B7A400F29A7E /* SystemConfiguration.framework in Frameworks */,
+				30CA1B501623B6EB00F29A7E /* MobileCoreServices.framework in Frameworks */,
+				3061E862161A794C00E437D1 /* CoreImage.framework in Frameworks */,
+				30505E311617A02D00DDB111 /* OpenGLES.framework in Frameworks */,
+				309CE5931609273000F1FAF5 /* CoreMedia.framework in Frameworks */,
+				309CE5911609252200F1FAF5 /* AssetsLibrary.framework in Frameworks */,
+				309CE58E1609039500F1FAF5 /* CoreVideo.framework in Frameworks */,
+				309CE58C1608F7E100F1FAF5 /* AVFoundation.framework in Frameworks */,
+				309CE55B1603B14400F1FAF5 /* UIKit.framework in Frameworks */,
+				309CE55D1603B14400F1FAF5 /* Foundation.framework in Frameworks */,
+				B5312FA1F86E68192A571C01 /* libPods-SharePictures.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		309CE54B1603B14400F1FAF5 = {
+			isa = PBXGroup;
+			children = (
+				309CE5601603B14400F1FAF5 /* SharePictures */,
+				309CE5591603B14400F1FAF5 /* Frameworks */,
+				309CE5571603B14400F1FAF5 /* Products */,
+				3487D4EA109B3D4FBECAC812 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		309CE5571603B14400F1FAF5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				309CE5561603B14400F1FAF5 /* SharePictures.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		309CE5591603B14400F1FAF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30F5E0881B681F5E00DBB713 /* Ostetso.bundle */,
+				30F5E0891B681F5E00DBB713 /* Ostetso.framework */,
+				B9DBF3A41AA6C78500F23CFA /* CoreMotion.framework */,
+				B9A3C3CC1AA1AB870064D1A2 /* ImageIO.framework */,
+				3055383A1937F625002CDA9F /* AdSupport.framework */,
+				305538381937F5C2002CDA9F /* libsqlite3.0.dylib */,
+				30A72C9D18E4DC1300E5CA9E /* Accelerate.framework */,
+				861BC08F163F9FA0009E5084 /* QuartzCore.framework */,
+				30CA1B531623B7A400F29A7E /* SystemConfiguration.framework */,
+				30CA1B4F1623B6EB00F29A7E /* MobileCoreServices.framework */,
+				3061E861161A794C00E437D1 /* CoreImage.framework */,
+				30505E301617A02D00DDB111 /* OpenGLES.framework */,
+				309CE5921609273000F1FAF5 /* CoreMedia.framework */,
+				309CE5901609252200F1FAF5 /* AssetsLibrary.framework */,
+				309CE58D1609039500F1FAF5 /* CoreVideo.framework */,
+				309CE58B1608F7E100F1FAF5 /* AVFoundation.framework */,
+				309CE55A1603B14400F1FAF5 /* UIKit.framework */,
+				309CE55C1603B14400F1FAF5 /* Foundation.framework */,
+				309CE55E1603B14400F1FAF5 /* CoreGraphics.framework */,
+				9F0FB004AC7F980A406247DA /* libPods-SharePictures.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		309CE5601603B14400F1FAF5 /* SharePictures */ = {
+			isa = PBXGroup;
+			children = (
+				B95AC9E71AADB14B004F09FC /* HomeViewController.h */,
+				B95AC9E81AADB14B004F09FC /* HomeViewController.m */,
+				309CE5691603B14400F1FAF5 /* FFAppDelegate.h */,
+				309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */,
+				30925ACD1669808C00239956 /* FFEffectInfo.h */,
+				30925ACE1669808C00239956 /* FFEffectInfo.m */,
+				30139BAA16272D6100B0547C /* FFInfoDialogVC.h */,
+				30139BAB16272D6100B0547C /* FFInfoDialogVC.m */,
+				309CE56C1603B14400F1FAF5 /* FFViewController.h */,
+				309CE56D1603B14400F1FAF5 /* FFViewController.m */,
+				309CE5841607ED5000F1FAF5 /* Resources */,
+				E4FA28E3191EC8F40090FA0F /* Images.xcassets */,
+				309CE5611603B14400F1FAF5 /* Supporting Files */,
+			);
+			path = SharePictures;
+			sourceTree = "<group>";
+		};
+		309CE5611603B14400F1FAF5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30479D621624DF620030C250 /* Localizable.strings */,
+				3036E2C41910339E00BD4ABE /* SharePictures-Info.plist */,
+				309CE5631603B14400F1FAF5 /* InfoPlist.strings */,
+				309CE5661603B14400F1FAF5 /* main.m */,
+				309CE5681603B14400F1FAF5 /* SharePictures-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		309CE5841607ED5000F1FAF5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B95AC9F01AADB2F9004F09FC /* HomeScreenImages */,
+				30BAAA01166D3464005189F2 /* effects */,
+				861BC089163F4A3E009E5084 /* SharePictures.entitlements */,
+				E43713C81626879E002786D0 /* InfoPages */,
+				E4EA49EE1624D4BB00BC3F44 /* Buttons */,
+				309CE5861607ED6A00F1FAF5 /* XIB Files */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		309CE5861607ED6A00F1FAF5 /* XIB Files */ = {
+			isa = PBXGroup;
+			children = (
+				B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */,
+				B95AC9E91AADB14B004F09FC /* HomeViewController.xib */,
+				302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */,
+				309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */,
+				30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */,
+			);
+			name = "XIB Files";
+			sourceTree = "<group>";
+		};
+		3487D4EA109B3D4FBECAC812 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F6792284F40E28EAC27A1C7 /* Pods-SharePictures.debug.xcconfig */,
+				A58EE353BE09664F682E511D /* Pods-SharePictures.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B95AC9F01AADB2F9004F09FC /* HomeScreenImages */ = {
+			isa = PBXGroup;
+			children = (
+				B9B4EE571AB1AC4B0071CB5B /* HomeInfoButton.png */,
+				B9B4EE581AB1AC4B0071CB5B /* HomeInfoButton@2x.png */,
+				B95ACA0D1AADDA01004F09FC /* HomeButton.png */,
+				B95ACA0E1AADDA01004F09FC /* HomeButton@2x.png */,
+				B95ACA051AADC5E7004F09FC /* GotoGallery_HomescreenButton.png */,
+				B95ACA061AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png */,
+				302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */,
+				302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */,
+				B95ACA011AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png */,
+				B95ACA021AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png */,
+				B95AC9F91AADC569004F09FC /* ShareShutter.png */,
+				B95AC9FA1AADC569004F09FC /* ShareShutter@2x.png */,
+				B95AC9FB1AADC569004F09FC /* UseCamera_HomescreenButton.png */,
+				B95AC9FC1AADC569004F09FC /* UseCamera_HomescreenButton@2x.png */,
+				B9AC53F41AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png */,
+				B9AC53F51AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png */,
+			);
+			name = HomeScreenImages;
+			sourceTree = "<group>";
+		};
+		E43713C81626879E002786D0 /* InfoPages */ = {
+			isa = PBXGroup;
+			children = (
+				E41465951939426A000B79BE /* SharePictures_Info.html */,
+				E43713C91626879E002786D0 /* InfoPagePix */,
+			);
+			name = InfoPages;
+			path = SharePictures/Resources/InfoPages;
+			sourceTree = "<group>";
+		};
+		E43713C91626879E002786D0 /* InfoPagePix */ = {
+			isa = PBXGroup;
+			children = (
+				E41465991939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png */,
+				E414659A1939428C000B79BE /* SharePictures_Sharing_Grid.png */,
+				E414659B1939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png */,
+				E414659C1939428C000B79BE /* SharePictures_RestartButton_InfoPageGraphic.png */,
+				E414659D1939428C000B79BE /* SharePictures_InfoPage_Banner.png */,
+			);
+			path = InfoPagePix;
+			sourceTree = "<group>";
+		};
+		E4EA49EE1624D4BB00BC3F44 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E4E20D371627E87B00A206CD /* CameraShutter_pressed.png */,
+				E4E20D381627E87B00A206CD /* CameraShutter_pressed@2x.png */,
+				E4E20D391627E87B00A206CD /* CameraShutter.png */,
+				E4E20D3A1627E87B00A206CD /* CameraShutter@2x.png */,
+				E4E20D331627E76400A206CD /* InfoButton.png */,
+				E4E20D341627E76400A206CD /* InfoButton@2x.png */,
+				30DA060216251F81006DBCE7 /* swapcam_hilite.png */,
+				30DA060316251F81006DBCE7 /* swapcam_hilite@2x.png */,
+				30DA060416251F81006DBCE7 /* swapcam.png */,
+				30DA060516251F81006DBCE7 /* swapcam@2x.png */,
+				E4EA49EF1624D4BB00BC3F44 /* FlashToggle.png */,
+				E4EA49F01624D4BB00BC3F44 /* FlashToggle@2x.png */,
+				303CCEA21939029F00F7A90D /* ViewGalleryIcon.png */,
+				303CCE9E1938FFF700F7A90D /* ViewGalleryIcon@2x.png */,
+			);
+			name = Buttons;
+			path = SharePictures/Resources/Buttons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		309CE5551603B14400F1FAF5 /* SharePictures */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 309CE5771603B14500F1FAF5 /* Build configuration list for PBXNativeTarget "SharePictures" */;
+			buildPhases = (
+				F70072DA5EA229B81414DC48 /* Check Pods Manifest.lock */,
+				309CE5521603B14400F1FAF5 /* Sources */,
+				309CE5531603B14400F1FAF5 /* Frameworks */,
+				309CE5541603B14400F1FAF5 /* Resources */,
+				946E53197E6D7DEBB2C39E06 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharePictures;
+			productName = SharePictures;
+			productReference = 309CE5561603B14400F1FAF5 /* SharePictures.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		309CE54D1603B14400F1FAF5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SP;
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Precipice Labs";
+				TargetAttributes = {
+					309CE5551603B14400F1FAF5 = {
+						DevelopmentTeam = K2993TVZ5K;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 309CE5501603B14400F1FAF5 /* Build configuration list for PBXProject "SharePictures" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 309CE54B1603B14400F1FAF5;
+			productRefGroup = 309CE5571603B14400F1FAF5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				309CE5551603B14400F1FAF5 /* SharePictures */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		309CE5541603B14400F1FAF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				309CE5651603B14400F1FAF5 /* InfoPlist.strings in Resources */,
+				B95ACA0F1AADDA01004F09FC /* HomeButton.png in Resources */,
+				E414659F1939428C000B79BE /* SharePictures_Sharing_Grid.png in Resources */,
+				E414659E1939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png in Resources */,
+				B95ACA041AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png in Resources */,
+				309CE5711603B14400F1FAF5 /* FFViewController_iPhone.xib in Resources */,
+				B9AC53F61AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png in Resources */,
+				30F5E08A1B681F5E00DBB713 /* Ostetso.bundle in Resources */,
+				B95AC9FF1AADC569004F09FC /* UseCamera_HomescreenButton.png in Resources */,
+				302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */,
+				B95AC9FD1AADC569004F09FC /* ShareShutter.png in Resources */,
+				30479D641624DF620030C250 /* Localizable.strings in Resources */,
+				E4EA49F51624D4BB00BC3F44 /* FlashToggle.png in Resources */,
+				B95AC9FE1AADC569004F09FC /* ShareShutter@2x.png in Resources */,
+				B95ACA081AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png in Resources */,
+				E41465961939426A000B79BE /* SharePictures_Info.html in Resources */,
+				B9AC53F71AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png in Resources */,
+				E4EA49F61624D4BB00BC3F44 /* FlashToggle@2x.png in Resources */,
+				302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */,
+				B95ACA001AADC569004F09FC /* UseCamera_HomescreenButton@2x.png in Resources */,
+				E4FA28E4191EC8F40090FA0F /* Images.xcassets in Resources */,
+				30DA060616251F81006DBCE7 /* swapcam_hilite.png in Resources */,
+				30DA060716251F81006DBCE7 /* swapcam_hilite@2x.png in Resources */,
+				B95ACA031AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png in Resources */,
+				B95AC9EF1AADB1A4004F09FC /* HomeViewController_iPad.xib in Resources */,
+				30DA060816251F81006DBCE7 /* swapcam.png in Resources */,
+				30DA060916251F81006DBCE7 /* swapcam@2x.png in Resources */,
+				30DA061F1625F956006DBCE7 /* FFViewController_iPad.xib in Resources */,
+				302F3EC41627885F00DA4C07 /* FFInfoDialogVC.xib in Resources */,
+				E4E20D351627E76400A206CD /* InfoButton.png in Resources */,
+				E4E20D361627E76400A206CD /* InfoButton@2x.png in Resources */,
+				B9B4EE5A1AB1AC4B0071CB5B /* HomeInfoButton@2x.png in Resources */,
+				E4E20D3B1627E87B00A206CD /* CameraShutter_pressed.png in Resources */,
+				E4E20D3C1627E87B00A206CD /* CameraShutter_pressed@2x.png in Resources */,
+				E4E20D3D1627E87B00A206CD /* CameraShutter.png in Resources */,
+				B95AC9EB1AADB14C004F09FC /* HomeViewController.xib in Resources */,
+				E41465A01939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png in Resources */,
+				E4E20D3E1627E87B00A206CD /* CameraShutter@2x.png in Resources */,
+				30BAAA02166D3464005189F2 /* effects in Resources */,
+				B95ACA071AADC5E7004F09FC /* GotoGallery_HomescreenButton.png in Resources */,
+				B95ACA101AADDA01004F09FC /* HomeButton@2x.png in Resources */,
+				E41465A11939428C000B79BE /* SharePictures_RestartButton_InfoPageGraphic.png in Resources */,
+				B9B4EE591AB1AC4B0071CB5B /* HomeInfoButton.png in Resources */,
+				303CCEA31939029F00F7A90D /* ViewGalleryIcon.png in Resources */,
+				303CCE9F1938FFF700F7A90D /* ViewGalleryIcon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		946E53197E6D7DEBB2C39E06 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SharePictures/Pods-SharePictures-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F70072DA5EA229B81414DC48 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		309CE5521603B14400F1FAF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				309CE5671603B14400F1FAF5 /* main.m in Sources */,
+				309CE56B1603B14400F1FAF5 /* FFAppDelegate.m in Sources */,
+				309CE56E1603B14400F1FAF5 /* FFViewController.m in Sources */,
+				30139BAC16272D6100B0547C /* FFInfoDialogVC.m in Sources */,
+				30925ACF1669808C00239956 /* FFEffectInfo.m in Sources */,
+				B95AC9EA1AADB14C004F09FC /* HomeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				302F3EC31627885F00DA4C07 /* en */,
+			);
+			name = FFInfoDialogVC.xib;
+			sourceTree = "<group>";
+		};
+		30479D621624DF620030C250 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30479D631624DF620030C250 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		309CE5631603B14400F1FAF5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				309CE5641603B14400F1FAF5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				309CE5701603B14400F1FAF5 /* en */,
+			);
+			name = FFViewController_iPhone.xib;
+			path = SharePictures;
+			sourceTree = "<group>";
+		};
+		30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30DA061E1625F956006DBCE7 /* en */,
+			);
+			name = FFViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		309CE5751603B14500F1FAF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "7b5711d7-41fc-46fa-9074-dbe1f60f0254";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		309CE5761603B14500F1FAF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "7b5711d7-41fc-46fa-9074-dbe1f60f0254";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		309CE5781603B14500F1FAF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F6792284F40E28EAC27A1C7 /* Pods-SharePictures.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/SharePictures\"",
+					"$(PROJECT_DIR)/Ostetso",
+					"$(PROJECT_DIR)/SharePictures",
+					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
+					/usr/include/libxml2,
+					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ostetso",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = SharePictures;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7s armv7 arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		309CE5791603B14500F1FAF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A58EE353BE09664F682E511D /* Pods-SharePictures.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/SharePictures\"",
+					"$(PROJECT_DIR)/Ostetso",
+					"$(PROJECT_DIR)/SharePictures",
+					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
+					/usr/include/libxml2,
+					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ostetso",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = SharePictures;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7s armv7 arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		309CE5501603B14400F1FAF5 /* Build configuration list for PBXProject "SharePictures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				309CE5751603B14500F1FAF5 /* Debug */,
+				309CE5761603B14500F1FAF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		309CE5771603B14500F1FAF5 /* Build configuration list for PBXNativeTarget "SharePictures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				309CE5781603B14500F1FAF5 /* Debug */,
+				309CE5791603B14500F1FAF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 309CE54D1603B14400F1FAF5 /* Project object */;
+}
