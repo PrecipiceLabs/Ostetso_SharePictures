@@ -17,7 +17,6 @@ Instructions for building
 ```
 - Next you will need to download the GPUImage project.  This is very easy with CocoaPods.  In the terminal, navigate to the SharePictures source directory and run:
 ``` bash
-	sudo gem install cocoapods
 	pod install
 ```
 - Next you will have to make sure that you have an account with Ostetso so that you can get the information that is needed to use the Ostetso SDK.  First navigate to [Ostetso.com](https://www.ostetso.com) to sign up as a developer and to obtain the SDK.
