@@ -62,9 +62,9 @@ BOOL reloadImage;
  }
 
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait ;//| UIInterfaceOrientationMaskLandscapeRight;//| UIInterfaceOrientationMaskLandscapeLeft;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 
@@ -528,7 +528,7 @@ BOOL reloadImage;
     return NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -1313,9 +1313,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [gpui processImage];
         _imageSelected=[_backGroundFilter.filter imageFromCurrentlyProcessedOutput];
         
-        NSLog(@"image resolution %f %f   orientation = %ld",_imageSelected.size.height,_imageSelected.size.width, _imageSelected.imageOrientation);
         _imageSelected=[self  fixRotation:_imageSelected];
-        NSLog(@"AFTER FIX: image resolution %f %f   orientation = %ld",_imageSelected.size.height,_imageSelected.size.width, _imageSelected.imageOrientation);        
+
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         
         [library writeImageToSavedPhotosAlbum:[_imageSelected CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2) {
