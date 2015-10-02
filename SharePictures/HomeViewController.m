@@ -157,6 +157,7 @@
 
 - (void) uploadFailedWithError: (NSError *) error
 {
+    NSLog(@"%@", error);
 }
 
 - (void)didUploadImageWithID:(NSString*)picID URL:(NSString*)picURL

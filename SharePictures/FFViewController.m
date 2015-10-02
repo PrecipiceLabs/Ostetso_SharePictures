@@ -1306,12 +1306,12 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         // Applying effect to save image to gallery
         _anotherImage=[self  fixRotation:_anotherImage];
         NSLog(@"Orientation = %ld", (long)_anotherImage.imageOrientation);
-        GPUImagePicture *gpui=[[GPUImagePicture alloc]initWithImage:_anotherImage];
+        //GPUImagePicture *gpui=[[GPUImagePicture alloc]initWithImage:_anotherImage];
         [_backGroundFilter.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(_anotherImage.size.width, _anotherImage.size.height)];
-        
-        [gpui addTarget:_backGroundFilter.filter];
-        [gpui processImage];
-        _imageSelected=[_backGroundFilter.filter imageFromCurrentlyProcessedOutput];
+        [_backGroundFilter.filter useNextFrameForImageCapture];
+        //[gpui addTarget:_backGroundFilter.filter];
+        //[gpui processImage];
+        _imageSelected=[_backGroundFilter.filter imageByFilteringImage:_anotherImage];
         
         _imageSelected=[self  fixRotation:_imageSelected];
 
