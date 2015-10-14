@@ -683,15 +683,10 @@
 					"\"$(SRCROOT)/SharePictures\"",
 					"$(PROJECT_DIR)/Ostetso",
 					"$(PROJECT_DIR)/SharePictures",
-					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
-					/usr/include/libxml2,
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -725,15 +720,10 @@
 					"\"$(SRCROOT)/SharePictures\"",
 					"$(PROJECT_DIR)/Ostetso",
 					"$(PROJECT_DIR)/SharePictures",
-					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
-					/usr/include/libxml2,
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (

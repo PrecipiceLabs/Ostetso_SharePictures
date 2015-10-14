@@ -4,6 +4,7 @@
 #define UPLOAD_IMAGE_MAX_DIMENSION 640
 
 @class FFEffectInfo;
+@class GPUImagePicture;
 
 typedef struct
 {
@@ -149,4 +150,6 @@ typedef enum
 @property (strong,nonatomic) GPUImagePicture *stillImagePicture; // Declared this property to apply filter on image selected from cameraRoll
 @property (strong, nonatomic) IBOutlet GPUImageView *previewImageView;// To show the image into the effect preview mode
 @property (nonatomic,strong) UIImage *anotherImage; // Image to apply effect while saving image
+@property (nonatomic,strong) GPUImagePicture *foregroundPicture;
+
 @end

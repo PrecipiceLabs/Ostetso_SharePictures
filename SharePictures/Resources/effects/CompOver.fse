@@ -1,0 +1,15 @@
+/* The effect name */
+"effectName" = "Composite";
+
+/* The effect class name */
+"effectClassname" = "GPUImageNormalBlendFilter";
+
+/* The icon file */
+"imageIcon" = "CompOver_icon.png";
+ 
+/* The selected icon file */
+"imageIconSelected" = "CompOver_iconselected.png";
+
+/* The overlay artwork */
+"imageForeground" = "CompOver_artwork_480x640.png";
+

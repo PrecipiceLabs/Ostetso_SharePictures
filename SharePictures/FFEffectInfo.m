@@ -51,6 +51,11 @@
     return [_effectInfo objectForKey: @"imageIcon"];
 }
 
+- (NSString *) getForegroundImageFile
+{
+    return [_effectInfo objectForKey: @"imageForeground"];
+}
+
 - (NSString *) getIconSelectedImageFile
 {
     return [_effectInfo objectForKey: @"imageIconSelected"];

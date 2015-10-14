@@ -28,6 +28,7 @@
 
 - (NSString *) getIconImageFile;
 - (NSString *) getIconSelectedImageFile;
+- (NSString *) getForegroundImageFile;
 
 - (BOOL) hasAmountSlider;
 - (float) amountSliderDefault;

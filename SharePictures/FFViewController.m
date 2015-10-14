@@ -164,6 +164,7 @@ BOOL reloadImage;
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = 1;
     
+    // Determine the initial device orientation
     if ([self.motionManager isAccelerometerAvailable])
     {
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -287,15 +288,15 @@ BOOL reloadImage;
         _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
 
         FFEffectInfo *effect = [_effectList objectForKey: _currentEffect];
-            _toolbar.hidden = YES;
-            _shareLabel.hidden = YES;
-            _effectSelectionView.hidden = NO;
-            _cameraButton.hidden = NO;
+        _toolbar.hidden = YES;
+        _shareLabel.hidden = YES;
+        _effectSelectionView.hidden = NO;
+        _cameraButton.hidden = NO;
         [_cameraButton setImage:[UIImage imageNamed:@"ShareShutter"] forState:UIControlStateNormal];
         [_cameraButton removeTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
         [_cameraButton addTarget:self action:@selector(shareImage:) forControlEvents:UIControlEventTouchUpInside];
-            [self showOSCsForEffect: effect];
-            [_camera resumeCameraCapture];
+        [self showOSCsForEffect: effect];
+        [_camera resumeCameraCapture];
         [_filterView.view setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         [self setCurrentEffect: currEffect ? currEffect : @"Sketch" forFilterView:_filterView];
@@ -648,9 +649,25 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         [_filterView.view setHidden:YES];
         _backGroundFilter=filterView;
-    [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view setBackgroundColor:[UIColor blackColor]];
     }
-    else {[self setupFilterForView:filterView forEffect: currentEffectName]; }
+    else
+    {
+        [self setupFilterForView:filterView forEffect: currentEffectName];
+    }
+    
+    _foregroundPicture = nil;
+    NSString *foregroundImageFile = [filterView.effect getForegroundImageFile];
+    if (foregroundImageFile)
+    {
+        NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
+        NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
+        UIImage *inputImage = [UIImage imageNamed:imagePath];
+        _foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+        [_foregroundPicture processImage];
+        [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+    }
+
 }
 
 - (void) makeFilterViewCurrentForFilterView: (FFFilterView *) filterView
@@ -711,16 +728,36 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         return;
     }
+ 
+    
+[_camera stopCameraCapture];    // FIX MITCH TESTING
     
     [self setEffect: currentEffectName forFilterView: filterView];
     [self makeFilterViewCurrentForFilterView: filterView];
-     [self setFilterAmount: [filterView.effect amountSliderDefault] forFilterView: filterView];
+    [self setFilterAmount: [filterView.effect amountSliderDefault] forFilterView: filterView];
+
     // Applied check, if its liveCamera Mode or image from nativeGallery
-     if ([self.getImage isEqualToString:@"fromGallery"])
+    if ([self.getImage isEqualToString:@"fromGallery"])
     {
         [_filterView.view setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
     }
+    
+/* FIX MITCH
+    _foregroundPicture = nil;
+    NSString *foregroundImageFile = [filterView.effect getForegroundImageFile];
+    if (foregroundImageFile)
+    {
+        NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
+        NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
+        UIImage *inputImage = [UIImage imageNamed:imagePath];
+        _foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+        [_foregroundPicture processImage];
+        [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+    }
+*/
+    
+[_camera startCameraCapture];    // FIX MITCH TESTING
 }
 
 - (FFFilterView *) allocNewFilterViewForEffect : (NSString *) effectName leftOfScreen: (BOOL) leftOfScreen
@@ -1416,7 +1453,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         setAmt(filterView.filter, NSSelectorFromString(amountMethodName), amount);
      
         // Checking if image is from native gallery and then applying effect on image
-        
+/*
         if ([self.getImage isEqualToString:@"fromGallery"])
         {
             [_filterView.view setHidden:YES];
@@ -1429,9 +1466,43 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             [_stillImagePicture addTarget:filterView.filter];
             [filterView.filter addTarget:_previewImageView];
             [_stillImagePicture processImage];
+            
+            // FIX MITCH TESTING
+            if (_foregroundPicture)
+            {
+                [_foregroundPicture processImage];
+                [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+            }
+            
             reloadImage=NO;
         }
+*/
      }
+    
+    // Checking if image is from native gallery and then applying effect on image
+    if ([self.getImage isEqualToString:@"fromGallery"])
+    {
+        [_filterView.view setHidden:YES];
+        // Checking if we need to reload image on _previewImageView or not
+        if (reloadImage==YES)
+        {
+            _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
+        }
+        [filterView.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(_previewImageView.sizeInPixels.width,_previewImageView.sizeInPixels.height)];
+        [_stillImagePicture addTarget:filterView.filter];
+        [filterView.filter addTarget:_previewImageView];
+        [_stillImagePicture processImage];
+        
+        // FIX MITCH TESTING
+        if (_foregroundPicture)
+        {
+            [_foregroundPicture processImage];
+            [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+        }
+        
+        reloadImage=NO;
+    }
+
 }
 
 - (IBAction)effectAmountValueChanged:(id)sender
@@ -1459,7 +1530,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
      {
          _effectSelectionView.frame = frame;
      }
-                     completion:^(BOOL finished)
+     completion:^(BOOL finished)
      {
      }];
 }
