@@ -729,8 +729,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         return;
     }
  
-    
-[_camera stopCameraCapture];    // FIX MITCH TESTING
+    [_camera stopCameraCapture];
     
     [self setEffect: currentEffectName forFilterView: filterView];
     [self makeFilterViewCurrentForFilterView: filterView];
@@ -743,21 +742,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [self.view setBackgroundColor:[UIColor blackColor]];
     }
     
-/* FIX MITCH
-    _foregroundPicture = nil;
-    NSString *foregroundImageFile = [filterView.effect getForegroundImageFile];
-    if (foregroundImageFile)
-    {
-        NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
-        NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
-        UIImage *inputImage = [UIImage imageNamed:imagePath];
-        _foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
-        [_foregroundPicture processImage];
-        [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
-    }
-*/
-    
-[_camera startCameraCapture];    // FIX MITCH TESTING
+    [_camera startCameraCapture];
 }
 
 - (FFFilterView *) allocNewFilterViewForEffect : (NSString *) effectName leftOfScreen: (BOOL) leftOfScreen
@@ -1110,10 +1095,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 	return scaledImage;
 }
 
-- (void) saveImage
+- (void) saveToAlbum: (NSData *)imageData
 {
-    // Comparing the string value to check the accelerator rotation and setting EXIF rotation tag
-    
     if ([_checkOrientation isEqualToString:@"UIInterfaceOrientationLandscapeRight"]) {
         rotationNumber=8;
     }
@@ -1123,109 +1106,123 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     else {
         rotationNumber=1;
     }
-   
-    // To save Image in photosAlbum
+
+    [self setCameraCaptureState: NO];
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    _isSavingImage = YES;
     
+    _image = [[UIImage alloc] initWithData:imageData];
+    // Checking if the deviceOrientation is in portrait mode
+    if ([[UIDevice currentDevice]orientation] == UIDeviceOrientationPortrait)
+    {
+        NSMutableDictionary *tiffMetadata = [[NSMutableDictionary alloc] init];
+        [tiffMetadata setObject:[NSNumber numberWithInt:rotationNumber ]forKey:(NSString*)kCGImagePropertyTIFFOrientation];
+        NSMutableDictionary *metadata = [[NSMutableDictionary alloc] init];
+        [metadata setObject:tiffMetadata forKey:(NSString*)kCGImagePropertyTIFFDictionary];
+        
+        // Correcting rotation of image with EXIF tag
+        _image=[self fixRotation:_image];
+        // Method to save image to photosAlbum with image rotation
+        [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:tiffMetadata completionBlock:^(NSURL *assetURL, NSError *error2) {
+            
+            if (error2)
+            {
+                NSLog(@"ERROR: the image failed to be written");
+                
+                NSString *saveFail;
+                
+                if (error2.code == ALAssetsLibraryAccessUserDeniedError)
+                {
+                    saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
+                }
+                else
+                {
+                    saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
+                }
+                
+                //Pop up a notification
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:saveFail
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+            }
+            
+            _isSavingImage = NO;
+            _capturedImageView.backgroundColor=[UIColor clearColor];
+            
+            _capturedImageView.hidden = NO;
+            _capturedImageView.userInteractionEnabled = YES;
+            
+            [self setActivityIndicatorAnimating: NO];
+            
+            runOnMainQueueWithoutDeadlocking(^{
+            });
+        }];
+    }
+    else
+    {
+        _image=[self fixRotation:_image];
+        [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
+         {
+             if (error2)
+             {
+                 NSLog(@"ERROR: the image failed to be written");
+                 
+                 NSString *saveFail;
+                 
+                 if (error2.code == ALAssetsLibraryAccessUserDeniedError)
+                 {
+                     saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
+                 }
+                 else
+                 {
+                     saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
+                 }
+                 
+                 //Pop up a notification
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:saveFail
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+                 [alert show];
+                 
+             }
+             
+             _isSavingImage = NO;
+             _capturedImageView.backgroundColor=[UIColor clearColor];
+             
+             _capturedImageView.hidden = NO;
+             _capturedImageView.userInteractionEnabled = YES;
+             [self setActivityIndicatorAnimating: NO];
+             
+             runOnMainQueueWithoutDeadlocking(^{ });
+         }];
+    }
+}
+
+- (void) saveImage
+{
     [self setActivityIndicatorAnimating:YES];
     
-    [_camera capturePhotoAsJPEGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedJPEG, NSError *error)
-     {
-         [self setCameraCaptureState: NO];
-         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-         _isSavingImage = YES;
-
-         _image = [[UIImage alloc] initWithData:processedJPEG];
-         // Checking if the deviceOrientation is in portrait mode
-         if ([[UIDevice currentDevice]orientation] == UIDeviceOrientationPortrait)
+    // Check if the effect requested to be saved as PNG (perhaps we'd like to preserve alpha channel)
+    if ([_filterView.effect saveAsPng])
+    {
+        [_camera capturePhotoAsPNGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedPNG, NSError *error)
          {
-             NSMutableDictionary *tiffMetadata = [[NSMutableDictionary alloc] init];
-             [tiffMetadata setObject:[NSNumber numberWithInt:rotationNumber ]forKey:(NSString*)kCGImagePropertyTIFFOrientation];
-                  NSMutableDictionary *metadata = [[NSMutableDictionary alloc] init];
-                  [metadata setObject:tiffMetadata forKey:(NSString*)kCGImagePropertyTIFFDictionary];
-             
-             // Correcting rotation of image with EXIF tag
-             _image=[self fixRotation:_image];
-             // Method to save image to photosAlbum with image rotation
-             [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:tiffMetadata completionBlock:^(NSURL *assetURL, NSError *error2) {
-
-                 if (error2)
-                 {
-                     NSLog(@"ERROR: the image failed to be written");
-                     
-                     NSString *saveFail;
-                     
-                     if (error2.code == ALAssetsLibraryAccessUserDeniedError)
-                     {
-                         saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
-                     }
-                     else
-                     {
-                         saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
-                     }
-                     
-                     //Pop up a notification
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                     message:saveFail
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                     [alert show];
-                     
-                 }
-                 
-                 _isSavingImage = NO;
-                 _capturedImageView.backgroundColor=[UIColor clearColor];
-                 
-                 _capturedImageView.hidden = NO;
-                 _capturedImageView.userInteractionEnabled = YES;
-
-                 [self setActivityIndicatorAnimating: NO];
-                 
-                 runOnMainQueueWithoutDeadlocking(^{
-                 });
-             }];
-        }
-         else
-         {
-             _image=[self fixRotation:_image];
-             [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
-             {
-                 if (error2)
-                 {
-                     NSLog(@"ERROR: the image failed to be written");
-
-                     NSString *saveFail;
-                  
-                     if (error2.code == ALAssetsLibraryAccessUserDeniedError)
-                     {
-                         saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
-                     }
-                     else
-                     {
-                         saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
-                     }
-                     
-                     //Pop up a notification
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                     message:saveFail
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                     [alert show];
-                     
-                 }
-          
-                 _isSavingImage = NO;
-                 _capturedImageView.backgroundColor=[UIColor clearColor];
-                 
-                 _capturedImageView.hidden = NO;
-                 _capturedImageView.userInteractionEnabled = YES;
-                 [self setActivityIndicatorAnimating: NO];
-             
-                 runOnMainQueueWithoutDeadlocking(^{ });
-             }];
-         }
-     }];
+             [self saveToAlbum: processedPNG] ;
+         }];
+    }
+    else
+    {
+        [_camera capturePhotoAsJPEGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedJPEG, NSError *error)
+        {
+             [self saveToAlbum: processedJPEG];
+        }];
+    }
 }
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
@@ -1354,7 +1351,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         
-        [library writeImageToSavedPhotosAlbum:[_imageSelected CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2) {
+        NSData *imageData = [_backGroundFilter.effect saveAsPng] ? UIImagePNGRepresentation(_imageSelected) : UIImageJPEGRepresentation(_imageSelected, 8.0);
+        [library writeImageDataToSavedPhotosAlbum: imageData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
+        {
             
             if (error2)
             {

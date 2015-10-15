@@ -61,6 +61,17 @@
     return [_effectInfo objectForKey: @"imageIconSelected"];
 }
 
+- (BOOL) saveAsPng
+{
+    id saveAsPng = [_effectInfo objectForKey: @"saveAsPng"];
+    if (saveAsPng && [[_effectInfo valueForKey: @"saveAsPng"] boolValue])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (BOOL) hasAmountSlider
 {
     id sliderDef = [_effectInfo objectForKey: @"amountSliderDefault"];

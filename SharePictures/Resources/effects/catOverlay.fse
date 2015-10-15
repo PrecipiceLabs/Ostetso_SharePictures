@@ -1,15 +1,15 @@
 /* The effect name */
-"effectName" = "Composite";
+"effectName" = "Cat Face";
 
 /* The effect class name */
 "effectClassname" = "GPUImageNormalBlendFilter";
 
 /* The icon file */
-"imageIcon" = "CompOver_icon.png";
+"imageIcon" = "catOverlay_icon.png";
  
 /* The selected icon file */
-"imageIconSelected" = "CompOver_iconselected.png";
+"imageIconSelected" = "catOverlay_iconselected.png";
 
 /* The overlay artwork */
-"imageForeground" = "CompOver_artwork_480x640.png";
+"imageForeground" = "catOverlayImg.png";
 
