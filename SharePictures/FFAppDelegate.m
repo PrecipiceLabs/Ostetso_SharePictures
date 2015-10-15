@@ -15,9 +15,6 @@
 
 @synthesize window;
 @synthesize viewController;
-#ifdef _DEBUG
-@synthesize fileManager=_fileManager;
-#endif
 
 #define OSTETSO_APP_ID @"C8B4F929-9366-4D4E-ABA5-9DC040CF01A7"
 #define OSTETSO_API_KEY @"620317F5-82F9-4193-91C5-20F6B774C914"

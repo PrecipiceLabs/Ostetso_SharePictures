@@ -603,6 +603,14 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                 {
                     effect = [[FFEffectInfo alloc] initWithFSEInfo: fseInfo];
                 
+#ifndef DEBUG
+                    // Only add the bevel effect for debug builds, just for developers!
+                    if ([[effect getEffectName] isEqualToString:@"Bevel"] ||
+                        [[effect getEffectName] isEqualToString:@"Bevel Selected"])
+                    {
+                        continue;
+                    }
+#endif
                     [_effectList setObject:effect forKey: name];
                     [_sortedEffectTitles addObject: name];
                 }
