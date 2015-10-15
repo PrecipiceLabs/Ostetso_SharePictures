@@ -164,6 +164,7 @@ BOOL reloadImage;
     self.motionManager = [[CMMotionManager alloc] init];
     self.motionManager.accelerometerUpdateInterval = 1;
     
+    // Determine the initial device orientation
     if ([self.motionManager isAccelerometerAvailable])
     {
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -287,15 +288,15 @@ BOOL reloadImage;
         _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
 
         FFEffectInfo *effect = [_effectList objectForKey: _currentEffect];
-            _toolbar.hidden = YES;
-            _shareLabel.hidden = YES;
-            _effectSelectionView.hidden = NO;
-            _cameraButton.hidden = NO;
+        _toolbar.hidden = YES;
+        _shareLabel.hidden = YES;
+        _effectSelectionView.hidden = NO;
+        _cameraButton.hidden = NO;
         [_cameraButton setImage:[UIImage imageNamed:@"ShareShutter"] forState:UIControlStateNormal];
         [_cameraButton removeTarget:self action:@selector(captureImage:) forControlEvents:UIControlEventTouchUpInside];
         [_cameraButton addTarget:self action:@selector(shareImage:) forControlEvents:UIControlEventTouchUpInside];
-            [self showOSCsForEffect: effect];
-            [_camera resumeCameraCapture];
+        [self showOSCsForEffect: effect];
+        [_camera resumeCameraCapture];
         [_filterView.view setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
         [self setCurrentEffect: currEffect ? currEffect : @"Sketch" forFilterView:_filterView];
@@ -602,6 +603,14 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                 {
                     effect = [[FFEffectInfo alloc] initWithFSEInfo: fseInfo];
                 
+#ifndef DEBUG
+                    // Only add the bevel effect for debug builds, just for developers!
+                    if ([[effect getEffectName] isEqualToString:@"Bevel"] ||
+                        [[effect getEffectName] isEqualToString:@"Bevel Selected"])
+                    {
+                        continue;
+                    }
+#endif
                     [_effectList setObject:effect forKey: name];
                     [_sortedEffectTitles addObject: name];
                 }
@@ -648,9 +657,25 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         [_filterView.view setHidden:YES];
         _backGroundFilter=filterView;
-    [self.view setBackgroundColor:[UIColor blackColor]];
+        [self.view setBackgroundColor:[UIColor blackColor]];
     }
-    else {[self setupFilterForView:filterView forEffect: currentEffectName]; }
+    else
+    {
+        [self setupFilterForView:filterView forEffect: currentEffectName];
+    }
+    
+    _foregroundPicture = nil;
+    NSString *foregroundImageFile = [filterView.effect getForegroundImageFile];
+    if (foregroundImageFile)
+    {
+        NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
+        NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
+        UIImage *inputImage = [UIImage imageNamed:imagePath];
+        _foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+        [_foregroundPicture processImage];
+        [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+    }
+
 }
 
 - (void) makeFilterViewCurrentForFilterView: (FFFilterView *) filterView
@@ -711,16 +736,21 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         return;
     }
+ 
+    [_camera stopCameraCapture];
     
     [self setEffect: currentEffectName forFilterView: filterView];
     [self makeFilterViewCurrentForFilterView: filterView];
-     [self setFilterAmount: [filterView.effect amountSliderDefault] forFilterView: filterView];
+    [self setFilterAmount: [filterView.effect amountSliderDefault] forFilterView: filterView];
+
     // Applied check, if its liveCamera Mode or image from nativeGallery
-     if ([self.getImage isEqualToString:@"fromGallery"])
+    if ([self.getImage isEqualToString:@"fromGallery"])
     {
         [_filterView.view setHidden:YES];
         [self.view setBackgroundColor:[UIColor blackColor]];
     }
+    
+    [_camera startCameraCapture];
 }
 
 - (FFFilterView *) allocNewFilterViewForEffect : (NSString *) effectName leftOfScreen: (BOOL) leftOfScreen
@@ -1073,10 +1103,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 	return scaledImage;
 }
 
-- (void) saveImage
+- (void) saveToAlbum: (NSData *)imageData
 {
-    // Comparing the string value to check the accelerator rotation and setting EXIF rotation tag
-    
     if ([_checkOrientation isEqualToString:@"UIInterfaceOrientationLandscapeRight"]) {
         rotationNumber=8;
     }
@@ -1086,109 +1114,123 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     else {
         rotationNumber=1;
     }
-   
-    // To save Image in photosAlbum
+
+    [self setCameraCaptureState: NO];
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    _isSavingImage = YES;
     
+    _image = [[UIImage alloc] initWithData:imageData];
+    // Checking if the deviceOrientation is in portrait mode
+    if ([[UIDevice currentDevice]orientation] == UIDeviceOrientationPortrait)
+    {
+        NSMutableDictionary *tiffMetadata = [[NSMutableDictionary alloc] init];
+        [tiffMetadata setObject:[NSNumber numberWithInt:rotationNumber ]forKey:(NSString*)kCGImagePropertyTIFFOrientation];
+        NSMutableDictionary *metadata = [[NSMutableDictionary alloc] init];
+        [metadata setObject:tiffMetadata forKey:(NSString*)kCGImagePropertyTIFFDictionary];
+        
+        // Correcting rotation of image with EXIF tag
+        _image=[self fixRotation:_image];
+        // Method to save image to photosAlbum with image rotation
+        [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:tiffMetadata completionBlock:^(NSURL *assetURL, NSError *error2) {
+            
+            if (error2)
+            {
+                NSLog(@"ERROR: the image failed to be written");
+                
+                NSString *saveFail;
+                
+                if (error2.code == ALAssetsLibraryAccessUserDeniedError)
+                {
+                    saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
+                }
+                else
+                {
+                    saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
+                }
+                
+                //Pop up a notification
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:saveFail
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+            }
+            
+            _isSavingImage = NO;
+            _capturedImageView.backgroundColor=[UIColor clearColor];
+            
+            _capturedImageView.hidden = NO;
+            _capturedImageView.userInteractionEnabled = YES;
+            
+            [self setActivityIndicatorAnimating: NO];
+            
+            runOnMainQueueWithoutDeadlocking(^{
+            });
+        }];
+    }
+    else
+    {
+        _image=[self fixRotation:_image];
+        [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
+         {
+             if (error2)
+             {
+                 NSLog(@"ERROR: the image failed to be written");
+                 
+                 NSString *saveFail;
+                 
+                 if (error2.code == ALAssetsLibraryAccessUserDeniedError)
+                 {
+                     saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
+                 }
+                 else
+                 {
+                     saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
+                 }
+                 
+                 //Pop up a notification
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:saveFail
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+                 [alert show];
+                 
+             }
+             
+             _isSavingImage = NO;
+             _capturedImageView.backgroundColor=[UIColor clearColor];
+             
+             _capturedImageView.hidden = NO;
+             _capturedImageView.userInteractionEnabled = YES;
+             [self setActivityIndicatorAnimating: NO];
+             
+             runOnMainQueueWithoutDeadlocking(^{ });
+         }];
+    }
+}
+
+- (void) saveImage
+{
     [self setActivityIndicatorAnimating:YES];
     
-    [_camera capturePhotoAsJPEGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedJPEG, NSError *error)
-     {
-         [self setCameraCaptureState: NO];
-         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-         _isSavingImage = YES;
-
-         _image = [[UIImage alloc] initWithData:processedJPEG];
-         // Checking if the deviceOrientation is in portrait mode
-         if ([[UIDevice currentDevice]orientation] == UIDeviceOrientationPortrait)
+    // Check if the effect requested to be saved as PNG (perhaps we'd like to preserve alpha channel)
+    if ([_filterView.effect saveAsPng])
+    {
+        [_camera capturePhotoAsPNGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedPNG, NSError *error)
          {
-             NSMutableDictionary *tiffMetadata = [[NSMutableDictionary alloc] init];
-             [tiffMetadata setObject:[NSNumber numberWithInt:rotationNumber ]forKey:(NSString*)kCGImagePropertyTIFFOrientation];
-                  NSMutableDictionary *metadata = [[NSMutableDictionary alloc] init];
-                  [metadata setObject:tiffMetadata forKey:(NSString*)kCGImagePropertyTIFFDictionary];
-             
-             // Correcting rotation of image with EXIF tag
-             _image=[self fixRotation:_image];
-             // Method to save image to photosAlbum with image rotation
-             [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:tiffMetadata completionBlock:^(NSURL *assetURL, NSError *error2) {
-
-                 if (error2)
-                 {
-                     NSLog(@"ERROR: the image failed to be written");
-                     
-                     NSString *saveFail;
-                     
-                     if (error2.code == ALAssetsLibraryAccessUserDeniedError)
-                     {
-                         saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
-                     }
-                     else
-                     {
-                         saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
-                     }
-                     
-                     //Pop up a notification
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                     message:saveFail
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                     [alert show];
-                     
-                 }
-                 
-                 _isSavingImage = NO;
-                 _capturedImageView.backgroundColor=[UIColor clearColor];
-                 
-                 _capturedImageView.hidden = NO;
-                 _capturedImageView.userInteractionEnabled = YES;
-
-                 [self setActivityIndicatorAnimating: NO];
-                 
-                 runOnMainQueueWithoutDeadlocking(^{
-                 });
-             }];
-        }
-         else
-         {
-             _image=[self fixRotation:_image];
-             [library writeImageToSavedPhotosAlbum:[_image CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
-             {
-                 if (error2)
-                 {
-                     NSLog(@"ERROR: the image failed to be written");
-
-                     NSString *saveFail;
-                  
-                     if (error2.code == ALAssetsLibraryAccessUserDeniedError)
-                     {
-                         saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
-                     }
-                     else
-                     {
-                         saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
-                     }
-                     
-                     //Pop up a notification
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                     message:saveFail
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                     [alert show];
-                     
-                 }
-          
-                 _isSavingImage = NO;
-                 _capturedImageView.backgroundColor=[UIColor clearColor];
-                 
-                 _capturedImageView.hidden = NO;
-                 _capturedImageView.userInteractionEnabled = YES;
-                 [self setActivityIndicatorAnimating: NO];
-             
-                 runOnMainQueueWithoutDeadlocking(^{ });
-             }];
-         }
-     }];
+             [self saveToAlbum: processedPNG] ;
+         }];
+    }
+    else
+    {
+        [_camera capturePhotoAsJPEGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedJPEG, NSError *error)
+        {
+             [self saveToAlbum: processedJPEG];
+        }];
+    }
 }
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
@@ -1317,7 +1359,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         
-        [library writeImageToSavedPhotosAlbum:[_imageSelected CGImage] metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2) {
+        NSData *imageData = [_backGroundFilter.effect saveAsPng] ? UIImagePNGRepresentation(_imageSelected) : UIImageJPEGRepresentation(_imageSelected, 8.0);
+        [library writeImageDataToSavedPhotosAlbum: imageData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
+        {
             
             if (error2)
             {
@@ -1416,7 +1460,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         setAmt(filterView.filter, NSSelectorFromString(amountMethodName), amount);
      
         // Checking if image is from native gallery and then applying effect on image
-        
+/*
         if ([self.getImage isEqualToString:@"fromGallery"])
         {
             [_filterView.view setHidden:YES];
@@ -1429,9 +1473,43 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             [_stillImagePicture addTarget:filterView.filter];
             [filterView.filter addTarget:_previewImageView];
             [_stillImagePicture processImage];
+            
+            // FIX MITCH TESTING
+            if (_foregroundPicture)
+            {
+                [_foregroundPicture processImage];
+                [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+            }
+            
             reloadImage=NO;
         }
+*/
      }
+    
+    // Checking if image is from native gallery and then applying effect on image
+    if ([self.getImage isEqualToString:@"fromGallery"])
+    {
+        [_filterView.view setHidden:YES];
+        // Checking if we need to reload image on _previewImageView or not
+        if (reloadImage==YES)
+        {
+            _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
+        }
+        [filterView.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(_previewImageView.sizeInPixels.width,_previewImageView.sizeInPixels.height)];
+        [_stillImagePicture addTarget:filterView.filter];
+        [filterView.filter addTarget:_previewImageView];
+        [_stillImagePicture processImage];
+        
+        // FIX MITCH TESTING
+        if (_foregroundPicture)
+        {
+            [_foregroundPicture processImage];
+            [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
+        }
+        
+        reloadImage=NO;
+    }
+
 }
 
 - (IBAction)effectAmountValueChanged:(id)sender
@@ -1459,7 +1537,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
      {
          _effectSelectionView.frame = frame;
      }
-                     completion:^(BOOL finished)
+     completion:^(BOOL finished)
      {
      }];
 }

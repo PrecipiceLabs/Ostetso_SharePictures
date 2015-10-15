@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		30139BAC16272D6100B0547C /* FFInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* FFInfoDialogVC.m */; };
+		30200F4B1BCF1827002955FD /* FFHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */; settings = {ASSET_TAGS = (); }; };
 		302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */; };
 		302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */; };
 		302F3EC41627885F00DA4C07 /* FFInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		30139BAA16272D6100B0547C /* FFInfoDialogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInfoDialogVC.h; sourceTree = "<group>"; };
 		30139BAB16272D6100B0547C /* FFInfoDialogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInfoDialogVC.m; sourceTree = "<group>"; };
+		30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHardlightAlphaSwap.m; sourceTree = "<group>"; };
+		30200F4C1BCF1853002955FD /* FFHardlightAlphaSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHardlightAlphaSwap.h; sourceTree = "<group>"; };
 		302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GotoGallery_HomescreenButton_WithBadge.png; path = SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge.png; sourceTree = "<group>"; };
 		302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GotoGallery_HomescreenButton_WithBadge@2x.png"; path = "SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge@2x.png"; sourceTree = "<group>"; };
 		302F3EC31627885F00DA4C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFInfoDialogVC.xib; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 				309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */,
 				30925ACD1669808C00239956 /* FFEffectInfo.h */,
 				30925ACE1669808C00239956 /* FFEffectInfo.m */,
+				30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */,
+				30200F4C1BCF1853002955FD /* FFHardlightAlphaSwap.h */,
 				30139BAA16272D6100B0547C /* FFInfoDialogVC.h */,
 				30139BAB16272D6100B0547C /* FFInfoDialogVC.m */,
 				309CE56C1603B14400F1FAF5 /* FFViewController.h */,
@@ -532,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30200F4B1BCF1827002955FD /* FFHardlightAlphaSwap.m in Sources */,
 				309CE5671603B14400F1FAF5 /* main.m in Sources */,
 				309CE56B1603B14400F1FAF5 /* FFAppDelegate.m in Sources */,
 				309CE56E1603B14400F1FAF5 /* FFViewController.m in Sources */,
@@ -683,15 +689,10 @@
 					"\"$(SRCROOT)/SharePictures\"",
 					"$(PROJECT_DIR)/Ostetso",
 					"$(PROJECT_DIR)/SharePictures",
-					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
-					/usr/include/libxml2,
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -725,15 +726,10 @@
 					"\"$(SRCROOT)/SharePictures\"",
 					"$(PROJECT_DIR)/Ostetso",
 					"$(PROJECT_DIR)/SharePictures",
-					/Volumes/Development/Projects/SharePictures/gitPorting/Ostetso,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SharePictures/SharePictures-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source\"",
-					/usr/include/libxml2,
-					"\"$SRCROOT/SharePictures/GPUImage_3e49ec8/Source/ios\"",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SharePictures/SharePictures-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (

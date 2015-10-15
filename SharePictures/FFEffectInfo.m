@@ -51,9 +51,25 @@
     return [_effectInfo objectForKey: @"imageIcon"];
 }
 
+- (NSString *) getForegroundImageFile
+{
+    return [_effectInfo objectForKey: @"imageForeground"];
+}
+
 - (NSString *) getIconSelectedImageFile
 {
     return [_effectInfo objectForKey: @"imageIconSelected"];
+}
+
+- (BOOL) saveAsPng
+{
+    id saveAsPng = [_effectInfo objectForKey: @"saveAsPng"];
+    if (saveAsPng && [[_effectInfo valueForKey: @"saveAsPng"] boolValue])
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (BOOL) hasAmountSlider

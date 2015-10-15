@@ -17,9 +17,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) HomeViewController *viewController;
-#ifdef _DEBUG
-@property (strong) NSFileManager* fileManager;
-#endif
 
 
 @end

@@ -28,7 +28,9 @@
 
 - (NSString *) getIconImageFile;
 - (NSString *) getIconSelectedImageFile;
+- (NSString *) getForegroundImageFile;
 
+- (BOOL) saveAsPng;
 - (BOOL) hasAmountSlider;
 - (float) amountSliderDefault;
 - (float) amountSliderMin;
