@@ -16,9 +16,7 @@
 @synthesize window;
 @synthesize viewController;
 
-#define OSTETSO_APP_ID @"PROVIDE YOUR APP ID HERE"
-#define OSTETSO_API_KEY @"PROVIDE YOUR API KEY HERE"
-#define USE_PRODUCTION_SERVER NO
+#import "OstetsoConfig.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {

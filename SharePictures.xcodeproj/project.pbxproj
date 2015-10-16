@@ -85,6 +85,7 @@
 		30139BAB16272D6100B0547C /* FFInfoDialogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInfoDialogVC.m; sourceTree = "<group>"; };
 		30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHardlightAlphaSwap.m; sourceTree = "<group>"; };
 		30200F4C1BCF1853002955FD /* FFHardlightAlphaSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHardlightAlphaSwap.h; sourceTree = "<group>"; };
+		30200F4D1BD16F77002955FD /* OstetsoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstetsoConfig.h; sourceTree = "<group>"; };
 		302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GotoGallery_HomescreenButton_WithBadge.png; path = SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge.png; sourceTree = "<group>"; };
 		302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GotoGallery_HomescreenButton_WithBadge@2x.png"; path = "SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge@2x.png"; sourceTree = "<group>"; };
 		302F3EC31627885F00DA4C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFInfoDialogVC.xib; sourceTree = "<group>"; };
@@ -257,6 +258,7 @@
 				30139BAB16272D6100B0547C /* FFInfoDialogVC.m */,
 				309CE56C1603B14400F1FAF5 /* FFViewController.h */,
 				309CE56D1603B14400F1FAF5 /* FFViewController.m */,
+				30200F4D1BD16F77002955FD /* OstetsoConfig.h */,
 				309CE5841607ED5000F1FAF5 /* Resources */,
 				E4FA28E3191EC8F40090FA0F /* Images.xcassets */,
 				309CE5611603B14400F1FAF5 /* Supporting Files */,
