@@ -9,20 +9,23 @@
 #import "SPAppDelegate.h"
 #import "Reachability.h"
 #import "SPViewController.h"
-#import "Ostetso/Ostetso.h"
 #import "SPHomeViewController.h"
+
+// Include the Ostetso framework header
+#import "Ostetso/Ostetso.h"
+
+// Import the app's ID and key values for use with Ostetso
+#import "OstetsoConfig.h"
+
 
 
 @implementation SPAppDelegate
 
-@synthesize window;
-@synthesize viewController;
-
-#import "OstetsoConfig.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
 }
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -40,11 +43,14 @@ void uncaughtExceptionHandler(NSException *exception)
     {
         self.viewController = [[SPHomeViewController alloc] initWithNibName:@"SPHomeViewController_iPad" bundle:nil];
     }
+
+    // Initialize Ostetso framework with our App ID and Key passing in our OstetsoDelegate
+    [Ostetso setApplicationID: OSTETSO_APP_ID
+                       appKey: OSTETSO_API_KEY
+     useProductionEnvironment: USE_PRODUCTION_SERVER
+                     delegate: self.viewController];
     
-    [Ostetso setApplicationID:OSTETSO_APP_ID
-                       appKey:OSTETSO_API_KEY
-     useProductionEnvironment:USE_PRODUCTION_SERVER
-                     delegate:self.viewController];
+    
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     nav.navigationBar.barStyle = UIBarStyleBlackTranslucent; //UIBarStyleBlack;
@@ -55,10 +61,12 @@ void uncaughtExceptionHandler(NSException *exception)
 
     self.window.tintColor = [UIColor whiteColor];
     
+    // Tell Ostetso that we finished launching the app
     [Ostetso applicationDidFinishLaunchingWithOptions: launchOptions];
     
     return YES;
 }
+
 
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -100,7 +108,7 @@ void uncaughtExceptionHandler(NSException *exception)
 }
 
 
-#pragma mark Ostetso
+#pragma mark - Ostetso
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////// Ostetso Stuff
@@ -115,7 +123,6 @@ void uncaughtExceptionHandler(NSException *exception)
 }
 
 #pragma mark Push notifications
-
 
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)pushToken
 {

@@ -535,7 +535,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     for (NSString *file in sortedDirectoryContents)
     {
         NSString *ext = [file pathExtension];
-        if ([ext isEqualToString: @"fse"])    // Got a FaceShip effect description file
+        if ([ext isEqualToString: @"fx"])    // Got a FaceShip effect description file
         {
             NSString *fsepath = [fxPath stringByAppendingPathComponent: file];
             NSString *fseFile = [NSString stringWithContentsOfFile:fsepath encoding:NSASCIIStringEncoding error: &error];

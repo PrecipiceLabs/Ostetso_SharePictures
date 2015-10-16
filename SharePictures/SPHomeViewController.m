@@ -43,11 +43,11 @@
     SPViewController *viewController;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"SPViewController_iPhone" bundle:nil];
     }
     else
     {
-        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"SPViewController_iPad" bundle:nil];
     }
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -86,11 +86,11 @@
     SPViewController *viewController;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"SPViewController_iPhone" bundle:nil];
     }
     else
     {
-        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"SPViewController_iPad" bundle:nil];
     }
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
