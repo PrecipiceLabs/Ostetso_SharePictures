@@ -1,79 +1,32 @@
-#import "FFViewController.h"
+//
+//  SPViewController
+//  SharePictures
+//
+//  Copyright (c) 2015 Precipice Labs. All rights reserved.
+//
+
+
+#import <CoreMotion/CoreMotion.h>
 #import <CoreImage/CoreImage.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <objc/message.h>
 #import <ImageIO/ImageIO.h>
-#import "FFAppDelegate.h"
-#import "FFInfoDialogVC.h"
-#import "FFEffectInfo.h"
-#import <CoreMotion/CoreMotion.h>
+
+#import "SPViewController.h"
+#import "SPAppDelegate.h"
+#import "SPInfoDialogVC.h"
+#import "SPEffectInfo.h"
+#import "SPFilterView.h"
+#import "Ostetso/Ostetso.h"
 
 // Variable for EXIF rotation tag
 int rotationNumber;
 // To check the need of reloading _selectedImage on GPUImageView after saving image
 BOOL reloadImage;
 
-@implementation FFUIImageView
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    // Consume touches
-   // NSLog(@"Touches Began FFUIImageView");
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-    // Consume touches
-   // NSLog(@"Touches Ended FFUIImageView");
-}
-
-@end
 
 
-@implementation FFFilterView
-
-- (FFFilterView *)initWithFrame: (CGRect) frame
-{
-     self.view = [[GPUImageView alloc] initWithFrame: frame];
-    
-     
-    return self;
-}
-
-@end
-
-@interface FFUIImageVC : UIViewController
-
-@end
-
-@implementation FFUIImageVC
-
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
-
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
- {
-     // Return YES for supported orientations
-     return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
- }
-
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-
-@end
-
-
-
-
-@implementation FFViewController
+@implementation SPViewController
 
 @synthesize isIPad = _isIPad;
 @synthesize  effectSelectionView = _effectSelectionView;
@@ -146,7 +99,7 @@ BOOL reloadImage;
 
     // Alloc the camera/filter view
     _origFilterViewFrame = self.view.frame;
-    _filterView = [[FFFilterView alloc] initWithFrame: _origFilterViewFrame];
+    _filterView = [[SPFilterView alloc] initWithFrame: _origFilterViewFrame];
     [self.view insertSubview:_filterView.view atIndex: 0];
     
     UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -256,7 +209,7 @@ BOOL reloadImage;
     else if ([self.getImage isEqualToString:@"fromGallery"])
     {
         reloadImage=NO;
-        _backGroundFilter=[[FFFilterView alloc]init];
+        _backGroundFilter=[[SPFilterView alloc]init];
 
         if (_selectedImage.size.height<_selectedImage.size.width) {
             
@@ -287,7 +240,7 @@ BOOL reloadImage;
 
         _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
 
-        FFEffectInfo *effect = [_effectList objectForKey: _currentEffect];
+        SPEffectInfo *effect = [_effectList objectForKey: _currentEffect];
         _toolbar.hidden = YES;
         _shareLabel.hidden = YES;
         _effectSelectionView.hidden = NO;
@@ -569,7 +522,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     if (_effectList) return;
     
     NSError * error;
-    NSString * fxPath = [FFEffectInfo getEffectsImagePath];
+    NSString * fxPath = [SPEffectInfo getEffectsImagePath];
     
     NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fxPath error:&error];
     
@@ -597,11 +550,11 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             NSString *name = [fseInfo objectForKey: @"effectName"];
             if (name)
             {
-                FFEffectInfo *effect = [_effectList objectForKey: name];
+                SPEffectInfo *effect = [_effectList objectForKey: name];
 
                 if (nil == effect)
                 {
-                    effect = [[FFEffectInfo alloc] initWithFSEInfo: fseInfo];
+                    effect = [[SPEffectInfo alloc] initWithFSEInfo: fseInfo];
                 
 #ifndef DEBUG
                     // Only add the bevel effect for debug builds, just for developers!
@@ -640,7 +593,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 }
 
 - (void) setEffect : (NSString *)currentEffectName
-                forFilterView: (FFFilterView *) filterView
+                forFilterView: (SPFilterView *) filterView
 {
     filterView.effect = [_effectList objectForKey: currentEffectName];
     
@@ -668,7 +621,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     NSString *foregroundImageFile = [filterView.effect getForegroundImageFile];
     if (foregroundImageFile)
     {
-        NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
+        NSString *fxImagePath = [SPEffectInfo getEffectsImagePath];
         NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
         UIImage *inputImage = [UIImage imageNamed:imagePath];
         _foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
@@ -678,7 +631,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 }
 
-- (void) makeFilterViewCurrentForFilterView: (FFFilterView *) filterView
+- (void) makeFilterViewCurrentForFilterView: (SPFilterView *) filterView
 {
     NSString *currentEffectName = [filterView.effect getEffectName];
     
@@ -710,7 +663,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [prefs synchronize];
     }
     
-    FFEffectInfo *effect = [_effectList objectForKey: _currentEffect];
+    SPEffectInfo *effect = [_effectList objectForKey: _currentEffect];
     UINavigationController *nav = [self navigationController];
     
     NSString *navTitle;
@@ -730,7 +683,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 
 - (void) setCurrentEffect : (NSString *)currentEffectName
-                 forFilterView: (FFFilterView *)filterView
+                 forFilterView: (SPFilterView *)filterView
 {
     if (_currentEffect && [_currentEffect isEqualToString: currentEffectName])
     {
@@ -753,7 +706,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     [_camera startCameraCapture];
 }
 
-- (FFFilterView *) allocNewFilterViewForEffect : (NSString *) effectName leftOfScreen: (BOOL) leftOfScreen
+- (SPFilterView *) allocNewFilterViewForEffect : (NSString *) effectName leftOfScreen: (BOOL) leftOfScreen
 {
     //double currentTime = CACurrentMediaTime();
     
@@ -765,8 +718,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     CGRect viewRect = _filterView.view.frame;
     viewRect.origin.x = leftOfScreen ? -viewRect.size.width : viewRect.size.width;
     
-    FFFilterView *tempFilterView;
-    tempFilterView = [[FFFilterView alloc] initWithFrame: viewRect];
+    SPFilterView *tempFilterView;
+    tempFilterView = [[SPFilterView alloc] initWithFrame: viewRect];
     [self.view insertSubview:tempFilterView.view atIndex: 1];
     
     [self setEffect: effectName forFilterView: tempFilterView];
@@ -811,8 +764,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     CGRect newViewRect = _filterView.view.frame;
     newViewRect.origin.x = effectIsBeforeCurrent ? viewRect.size.width : -viewRect.size.width;
     
-    __block FFFilterView *tempFilterView;
-    tempFilterView = [[FFFilterView alloc] initWithFrame: viewRect];
+    __block SPFilterView *tempFilterView;
+    tempFilterView = [[SPFilterView alloc] initWithFrame: viewRect];
     [self.view insertSubview:tempFilterView.view atIndex: 1];
 
     [self setCurrentEffect: effectName forFilterView: tempFilterView];
@@ -872,7 +825,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     
     for (NSString *key in _sortedEffectTitles)
     {
-        FFEffectInfo *effect = [_effectList objectForKey: key];
+        SPEffectInfo *effect = [_effectList objectForKey: key];
         UIButton *effectButton;
         
         BOOL haveIconFile = NO;
@@ -880,7 +833,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         NSString *iconImageFile = [effect getIconImageFile];
         if (iconImageFile)
         {
-            NSString *fxImagePath = [FFEffectInfo getEffectsImagePath];
+            NSString *fxImagePath = [SPEffectInfo getEffectsImagePath];
             
             NSString *iconPath = [fxImagePath stringByAppendingPathComponent: iconImageFile];
             UIImage *btnImage = [UIImage imageWithContentsOfFile: iconPath];
@@ -978,7 +931,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 }
 
 
-- (void)setupFilterForView: (FFFilterView *) filterview forEffect:(NSString *)effectName
+- (void)setupFilterForView: (SPFilterView *) filterview forEffect:(NSString *)effectName
 {
     [_camera addTarget: filterview.filter];
     
@@ -997,7 +950,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 }
 
-- (void) showOSCsForEffect: (FFEffectInfo *) effect
+- (void) showOSCsForEffect: (SPEffectInfo *) effect
 {
     if (_capturedImageView.hidden == NO) return;    // don't mess with the camera state if we're previewing a captured image
     
@@ -1027,7 +980,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     
     [self hideOSCs];
 
-    FFEffectInfo *effect = [_effectList objectForKey: _currentEffect];
+    SPEffectInfo *effect = [_effectList objectForKey: _currentEffect];
     
     if (cameraActive)
     {
@@ -1451,7 +1404,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     return (_panStatus == kPanStatusOff);
 }
 
-- (void) setFilterAmount: (CGFloat) amount forFilterView: (FFFilterView *)filterView
+- (void) setFilterAmount: (CGFloat) amount forFilterView: (SPFilterView *)filterView
 {
     NSString *amountMethodName = [filterView.effect getAmountMethodName];
     if (amountMethodName)

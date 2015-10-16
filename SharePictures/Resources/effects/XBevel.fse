@@ -2,7 +2,7 @@
 "effectName" = "Bevel";
 
 /* The effect class name */
-"effectClassname" = "FFHardlightAlphaSwap";
+"effectClassname" = "SPHardlightAlphaSwap";
 
 /* The icon file */
 "imageIcon" = "XBevel_icon.png";

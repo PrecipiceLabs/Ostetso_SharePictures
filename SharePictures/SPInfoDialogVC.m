@@ -4,12 +4,12 @@
 //  Copyright 2014 Precipice Labs, Inc. All rights reserved.
 //
 
-#import "FFInfoDialogVC.h"
-#import "HomeViewController.h"
+#import "SPInfoDialogVC.h"
+#import "SPHomeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 
-@implementation FFInfoDialogVC
+@implementation SPInfoDialogVC
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -198,7 +198,7 @@
     //[_navigationBar setUserInteractionEnabled: allow];
 }
 
-- (void) setFPViewController: (HomeViewController *)ffVC
+- (void) setFPViewController: (SPHomeViewController *)ffVC
 {
     _ffVC = ffVC;
 }

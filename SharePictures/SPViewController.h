@@ -3,7 +3,8 @@
 #import <CoreMotion/CoreMotion.h>
 #define UPLOAD_IMAGE_MAX_DIMENSION 640
 
-@class FFEffectInfo;
+@class SPEffectInfo;
+@class SPFilterView;
 @class GPUImagePicture;
 
 typedef struct
@@ -25,23 +26,8 @@ typedef enum
 
 
 
-@interface FFFilterView : NSObject
 
-@property (atomic, retain) GPUImageOutput<GPUImageInput> *filter;
-@property (atomic, retain) GPUImageView *view;
-@property (atomic, retain) FFEffectInfo *effect;
-
-- (FFFilterView *)initWithFrame: (CGRect) frame;
-
-@end
-
-@interface FFUIImageView : UIImageView
-
-@end
-
-
-
-@interface FFViewController : UIViewController <GPUImageVideoCameraDelegate, UIGestureRecognizerDelegate, UINavigationBarDelegate,
+@interface SPViewController : UIViewController <GPUImageVideoCameraDelegate, UIGestureRecognizerDelegate, UINavigationBarDelegate,
                                                 UIAlertViewDelegate>
 {
     GPUImageStillCamera *stillCamera;
@@ -52,8 +38,8 @@ typedef enum
     
     GPUImageStillCamera *_camera;
     
-    FFFilterView *_filterView;
-    FFFilterView *_tempFilterView;   // used when transitioning to new effect
+    SPFilterView *_filterView;
+    SPFilterView *_tempFilterView;   // used when transitioning to new effect
     
     // Effects
     NSMutableDictionary *_effectList;
@@ -70,7 +56,7 @@ typedef enum
     float _shrinkScaleValue;
     
     // Outlets
-    __weak IBOutlet FFUIImageView           *_capturedImageView;
+    __weak IBOutlet UIImageView             *_capturedImageView;
     __weak IBOutlet UIToolbar               *_toolbar;
     
     // Tool Bar Buttons
@@ -146,7 +132,7 @@ typedef enum
 @property (nonatomic ,strong) NSString *checkOrientation;       // Putting rotation string to compare deviceOrientation
 @property (strong,nonatomic) NSString *getImage; // Passing string to differentiate between native gallery and live camera mode
 @property (strong,nonatomic) UIImage *selectedImage; // To get image selected from native Gallery.
-@property (strong,nonatomic) FFFilterView *backGroundFilter; // Declared this filterView to get the effect to be applied on image while saving
+@property (strong,nonatomic) SPFilterView *backGroundFilter; // Declared this filterView to get the effect to be applied on image while saving
 @property (strong,nonatomic) GPUImagePicture *stillImagePicture; // Declared this property to apply filter on image selected from cameraRoll
 @property (strong, nonatomic) IBOutlet GPUImageView *previewImageView;// To show the image into the effect preview mode
 @property (nonatomic,strong) UIImage *anotherImage; // Image to apply effect while saving image

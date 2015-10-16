@@ -1,17 +1,19 @@
 //
-//  FFAppDelegate.m
+//  SPAppDelegate.m
 // 
 //
 //  Copyright (c) 2015 Precipice Labs, Inc. All rights reserved.
 //
 
 
-#import "FFAppDelegate.h"
+#import "SPAppDelegate.h"
 #import "Reachability.h"
-#import "FFViewController.h"
+#import "SPViewController.h"
 #import "Ostetso/Ostetso.h"
-#import "HomeViewController.h"
-@implementation FFAppDelegate
+#import "SPHomeViewController.h"
+
+
+@implementation SPAppDelegate
 
 @synthesize window;
 @synthesize viewController;
@@ -32,11 +34,11 @@ void uncaughtExceptionHandler(NSException *exception)
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        self.viewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        self.viewController = [[SPHomeViewController alloc] initWithNibName:@"SPHomeViewController" bundle:nil];
     }
     else
     {
-        self.viewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController_iPad" bundle:nil];
+        self.viewController = [[SPHomeViewController alloc] initWithNibName:@"SPHomeViewController_iPad" bundle:nil];
     }
     
     [Ostetso setApplicationID:OSTETSO_APP_ID

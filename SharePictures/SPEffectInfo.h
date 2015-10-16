@@ -1,14 +1,14 @@
 //
-//  FFEffectInfo.h
+//  SPEffectInfo.h
 //
-//  Created by Precipice Labs on 11/30/13.
-//  Copyright (c) 2014 Precipice Labs, Inc. All rights reserved.
+//  Created by Precipice Labs
+//  Copyright (c) 2015 Precipice Labs, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 
-@interface FFEffectInfo : NSObject
+@interface SPEffectInfo : NSObject
 {
 }
 

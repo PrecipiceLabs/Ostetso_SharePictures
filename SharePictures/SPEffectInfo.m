@@ -1,16 +1,16 @@
 //
-//  FFEffectInfo.m
+//  SPEffectInfo.m
 //
 //  Created by Precipice Labs on 11/30/13.
 //  Copyright (c) 2014 Precipice Labs, Inc. All rights reserved.
 //
 
-#import "FFEffectInfo.h"
-#import "FFAppDelegate.h"
-#import "FFViewController.h"
+#import "SPEffectInfo.h"
+#import "SPAppDelegate.h"
+#import "SPViewController.h"
 
 
-@implementation FFEffectInfo
+@implementation SPEffectInfo
 
 - (id) initWithFSEInfo: (NSDictionary *)fseInfo
 {

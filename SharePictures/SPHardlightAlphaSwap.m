@@ -5,7 +5,7 @@
 //  Copyright © 2015 Precipice Labs. All rights reserved.
 //
 
-#import "FFHardlightAlphaSwap.h"
+#import "SPHardlightAlphaSwap.h"
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 
@@ -94,7 +94,7 @@ NSString *const kGPUImageHardLightBlendAlphaSwapFragmentShaderString = SHADER_ST
 #endif
 
 
-@implementation FFHardlightAlphaSwap
+@implementation SPHardlightAlphaSwap
 
 - (id)init;
 {

@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30139BAC16272D6100B0547C /* FFInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* FFInfoDialogVC.m */; };
-		30200F4B1BCF1827002955FD /* FFHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */; settings = {ASSET_TAGS = (); }; };
+		30139BAC16272D6100B0547C /* SPInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* SPInfoDialogVC.m */; };
+		30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */; settings = {ASSET_TAGS = (); }; };
+		30200F501BD1ACCF002955FD /* SPFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4F1BD1ACCF002955FD /* SPFilterView.m */; settings = {ASSET_TAGS = (); }; };
 		302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */; };
 		302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */; };
-		302F3EC41627885F00DA4C07 /* FFInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */; };
+		302F3EC41627885F00DA4C07 /* SPInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* SPInfoDialogVC.xib */; };
 		303CCE9F1938FFF700F7A90D /* ViewGalleryIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 303CCE9E1938FFF700F7A90D /* ViewGalleryIcon@2x.png */; };
 		303CCEA31939029F00F7A90D /* ViewGalleryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 303CCEA21939029F00F7A90D /* ViewGalleryIcon.png */; };
 		30479D641624DF620030C250 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30479D621624DF620030C250 /* Localizable.strings */; };
@@ -19,14 +20,14 @@
 		305538391937F5C2002CDA9F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 305538381937F5C2002CDA9F /* libsqlite3.0.dylib */; };
 		3061E862161A794C00E437D1 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3061E861161A794C00E437D1 /* CoreImage.framework */; };
 		30772BB21AE079C200CC0B9D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3055383A1937F625002CDA9F /* AdSupport.framework */; };
-		30925ACF1669808C00239956 /* FFEffectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 30925ACE1669808C00239956 /* FFEffectInfo.m */; };
+		30925ACF1669808C00239956 /* SPEffectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 30925ACE1669808C00239956 /* SPEffectInfo.m */; };
 		309CE55B1603B14400F1FAF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55A1603B14400F1FAF5 /* UIKit.framework */; };
 		309CE55D1603B14400F1FAF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55C1603B14400F1FAF5 /* Foundation.framework */; };
 		309CE5651603B14400F1FAF5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 309CE5631603B14400F1FAF5 /* InfoPlist.strings */; };
 		309CE5671603B14400F1FAF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE5661603B14400F1FAF5 /* main.m */; };
-		309CE56B1603B14400F1FAF5 /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */; };
-		309CE56E1603B14400F1FAF5 /* FFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56D1603B14400F1FAF5 /* FFViewController.m */; };
-		309CE5711603B14400F1FAF5 /* FFViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */; };
+		309CE56B1603B14400F1FAF5 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56A1603B14400F1FAF5 /* SPAppDelegate.m */; };
+		309CE56E1603B14400F1FAF5 /* SPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309CE56D1603B14400F1FAF5 /* SPViewController.m */; };
+		309CE5711603B14400F1FAF5 /* SPViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 309CE56F1603B14400F1FAF5 /* SPViewController_iPhone.xib */; };
 		309CE58C1608F7E100F1FAF5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE58B1608F7E100F1FAF5 /* AVFoundation.framework */; };
 		309CE58E1609039500F1FAF5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE58D1609039500F1FAF5 /* CoreVideo.framework */; };
 		309CE5911609252200F1FAF5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE5901609252200F1FAF5 /* AssetsLibrary.framework */; };
@@ -39,15 +40,15 @@
 		30DA060716251F81006DBCE7 /* swapcam_hilite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060316251F81006DBCE7 /* swapcam_hilite@2x.png */; };
 		30DA060816251F81006DBCE7 /* swapcam.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060416251F81006DBCE7 /* swapcam.png */; };
 		30DA060916251F81006DBCE7 /* swapcam@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DA060516251F81006DBCE7 /* swapcam@2x.png */; };
-		30DA061F1625F956006DBCE7 /* FFViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */; };
+		30DA061F1625F956006DBCE7 /* SPViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30DA061D1625F956006DBCE7 /* SPViewController_iPad.xib */; };
 		30F5E08A1B681F5E00DBB713 /* Ostetso.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30F5E0881B681F5E00DBB713 /* Ostetso.bundle */; };
 		30F5E08B1B681F5E00DBB713 /* Ostetso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F5E0891B681F5E00DBB713 /* Ostetso.framework */; };
 		861BC090163F9FA0009E5084 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861BC08F163F9FA0009E5084 /* QuartzCore.framework */; };
 		861BC091163F9FB8009E5084 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 309CE55E1603B14400F1FAF5 /* CoreGraphics.framework */; };
 		B5312FA1F86E68192A571C01 /* libPods-SharePictures.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0FB004AC7F980A406247DA /* libPods-SharePictures.a */; };
-		B95AC9EA1AADB14C004F09FC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95AC9E81AADB14B004F09FC /* HomeViewController.m */; };
-		B95AC9EB1AADB14C004F09FC /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9E91AADB14B004F09FC /* HomeViewController.xib */; };
-		B95AC9EF1AADB1A4004F09FC /* HomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */; };
+		B95AC9EA1AADB14C004F09FC /* SPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95AC9E81AADB14B004F09FC /* SPHomeViewController.m */; };
+		B95AC9EB1AADB14C004F09FC /* SPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9E91AADB14B004F09FC /* SPHomeViewController.xib */; };
+		B95AC9EF1AADB1A4004F09FC /* SPHomeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9EE1AADB1A4004F09FC /* SPHomeViewController_iPad.xib */; };
 		B95AC9FD1AADC569004F09FC /* ShareShutter.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9F91AADC569004F09FC /* ShareShutter.png */; };
 		B95AC9FE1AADC569004F09FC /* ShareShutter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9FA1AADC569004F09FC /* ShareShutter@2x.png */; };
 		B95AC9FF1AADC569004F09FC /* UseCamera_HomescreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B95AC9FB1AADC569004F09FC /* UseCamera_HomescreenButton.png */; };
@@ -81,14 +82,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		30139BAA16272D6100B0547C /* FFInfoDialogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInfoDialogVC.h; sourceTree = "<group>"; };
-		30139BAB16272D6100B0547C /* FFInfoDialogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInfoDialogVC.m; sourceTree = "<group>"; };
-		30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHardlightAlphaSwap.m; sourceTree = "<group>"; };
-		30200F4C1BCF1853002955FD /* FFHardlightAlphaSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHardlightAlphaSwap.h; sourceTree = "<group>"; };
+		30139BAA16272D6100B0547C /* SPInfoDialogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPInfoDialogVC.h; sourceTree = "<group>"; };
+		30139BAB16272D6100B0547C /* SPInfoDialogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPInfoDialogVC.m; sourceTree = "<group>"; };
+		30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHardlightAlphaSwap.m; sourceTree = "<group>"; };
+		30200F4C1BCF1853002955FD /* SPHardlightAlphaSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHardlightAlphaSwap.h; sourceTree = "<group>"; };
 		30200F4D1BD16F77002955FD /* OstetsoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OstetsoConfig.h; sourceTree = "<group>"; };
+		30200F4E1BD1ACCF002955FD /* SPFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPFilterView.h; sourceTree = "<group>"; };
+		30200F4F1BD1ACCF002955FD /* SPFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPFilterView.m; sourceTree = "<group>"; };
 		302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GotoGallery_HomescreenButton_WithBadge.png; path = SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge.png; sourceTree = "<group>"; };
 		302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GotoGallery_HomescreenButton_WithBadge@2x.png"; path = "SharePictures/Resources/Buttons/GotoGallery_HomescreenButton_WithBadge@2x.png"; sourceTree = "<group>"; };
-		302F3EC31627885F00DA4C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFInfoDialogVC.xib; sourceTree = "<group>"; };
+		302F3EC31627885F00DA4C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/SPInfoDialogVC.xib; sourceTree = "<group>"; };
 		3036E2C41910339E00BD4ABE /* SharePictures-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SharePictures-Info.plist"; sourceTree = "<group>"; };
 		303CCE9E1938FFF700F7A90D /* ViewGalleryIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ViewGalleryIcon@2x.png"; sourceTree = "<group>"; };
 		303CCEA21939029F00F7A90D /* ViewGalleryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ViewGalleryIcon.png; sourceTree = "<group>"; };
@@ -97,8 +100,8 @@
 		305538381937F5C2002CDA9F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3055383A1937F625002CDA9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3061E861161A794C00E437D1 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		30925ACD1669808C00239956 /* FFEffectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFEffectInfo.h; sourceTree = "<group>"; };
-		30925ACE1669808C00239956 /* FFEffectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFEffectInfo.m; sourceTree = "<group>"; };
+		30925ACD1669808C00239956 /* SPEffectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEffectInfo.h; sourceTree = "<group>"; };
+		30925ACE1669808C00239956 /* SPEffectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEffectInfo.m; sourceTree = "<group>"; };
 		309CE5561603B14400F1FAF5 /* SharePictures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharePictures.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309CE55A1603B14400F1FAF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		309CE55C1603B14400F1FAF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,11 +109,11 @@
 		309CE5641603B14400F1FAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		309CE5661603B14400F1FAF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		309CE5681603B14400F1FAF5 /* SharePictures-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SharePictures-Prefix.pch"; sourceTree = "<group>"; };
-		309CE5691603B14400F1FAF5 /* FFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFAppDelegate.h; sourceTree = "<group>"; };
-		309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFAppDelegate.m; sourceTree = "<group>"; };
-		309CE56C1603B14400F1FAF5 /* FFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFViewController.h; sourceTree = "<group>"; };
-		309CE56D1603B14400F1FAF5 /* FFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFViewController.m; sourceTree = "<group>"; };
-		309CE5701603B14400F1FAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FFViewController_iPhone.xib; sourceTree = "<group>"; };
+		309CE5691603B14400F1FAF5 /* SPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAppDelegate.h; sourceTree = "<group>"; };
+		309CE56A1603B14400F1FAF5 /* SPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAppDelegate.m; sourceTree = "<group>"; };
+		309CE56C1603B14400F1FAF5 /* SPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPViewController.h; sourceTree = "<group>"; };
+		309CE56D1603B14400F1FAF5 /* SPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPViewController.m; sourceTree = "<group>"; };
+		309CE5701603B14400F1FAF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SPViewController_iPhone.xib; sourceTree = "<group>"; };
 		309CE58B1608F7E100F1FAF5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		309CE58D1609039500F1FAF5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		309CE5901609252200F1FAF5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -123,7 +126,7 @@
 		30DA060316251F81006DBCE7 /* swapcam_hilite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swapcam_hilite@2x.png"; sourceTree = "<group>"; };
 		30DA060416251F81006DBCE7 /* swapcam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapcam.png; sourceTree = "<group>"; };
 		30DA060516251F81006DBCE7 /* swapcam@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swapcam@2x.png"; sourceTree = "<group>"; };
-		30DA061E1625F956006DBCE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/FFViewController_iPad.xib; sourceTree = "<group>"; };
+		30DA061E1625F956006DBCE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = SharePictures/en.lproj/SPViewController_iPad.xib; sourceTree = "<group>"; };
 		30F5E0881B681F5E00DBB713 /* Ostetso.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Ostetso.bundle; path = Ostetso/Ostetso.bundle; sourceTree = "<group>"; };
 		30F5E0891B681F5E00DBB713 /* Ostetso.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ostetso.framework; path = Ostetso/Ostetso.framework; sourceTree = "<group>"; };
 		7F6792284F40E28EAC27A1C7 /* Pods-SharePictures.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePictures.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SharePictures/Pods-SharePictures.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,10 +134,10 @@
 		861BC08F163F9FA0009E5084 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9F0FB004AC7F980A406247DA /* libPods-SharePictures.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharePictures.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58EE353BE09664F682E511D /* Pods-SharePictures.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharePictures.release.xcconfig"; path = "Pods/Target Support Files/Pods-SharePictures/Pods-SharePictures.release.xcconfig"; sourceTree = "<group>"; };
-		B95AC9E71AADB14B004F09FC /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		B95AC9E81AADB14B004F09FC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		B95AC9E91AADB14B004F09FC /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = SharePictures/HomeViewController.xib; sourceTree = "<group>"; };
-		B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController_iPad.xib; path = SharePictures/HomeViewController_iPad.xib; sourceTree = "<group>"; };
+		B95AC9E71AADB14B004F09FC /* SPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHomeViewController.h; sourceTree = "<group>"; };
+		B95AC9E81AADB14B004F09FC /* SPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHomeViewController.m; sourceTree = "<group>"; };
+		B95AC9E91AADB14B004F09FC /* SPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SPHomeViewController.xib; path = SharePictures/SPHomeViewController.xib; sourceTree = "<group>"; };
+		B95AC9EE1AADB1A4004F09FC /* SPHomeViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SPHomeViewController_iPad.xib; path = SharePictures/SPHomeViewController_iPad.xib; sourceTree = "<group>"; };
 		B95AC9F91AADC569004F09FC /* ShareShutter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareShutter.png; path = SharePictures/Resources/HomeScreenImages/ShareShutter.png; sourceTree = "<group>"; };
 		B95AC9FA1AADC569004F09FC /* ShareShutter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ShareShutter@2x.png"; path = "SharePictures/Resources/HomeScreenImages/ShareShutter@2x.png"; sourceTree = "<group>"; };
 		B95AC9FB1AADC569004F09FC /* UseCamera_HomescreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UseCamera_HomescreenButton.png; path = SharePictures/Resources/HomeScreenImages/UseCamera_HomescreenButton.png; sourceTree = "<group>"; };
@@ -246,18 +249,20 @@
 		309CE5601603B14400F1FAF5 /* SharePictures */ = {
 			isa = PBXGroup;
 			children = (
-				B95AC9E71AADB14B004F09FC /* HomeViewController.h */,
-				B95AC9E81AADB14B004F09FC /* HomeViewController.m */,
-				309CE5691603B14400F1FAF5 /* FFAppDelegate.h */,
-				309CE56A1603B14400F1FAF5 /* FFAppDelegate.m */,
-				30925ACD1669808C00239956 /* FFEffectInfo.h */,
-				30925ACE1669808C00239956 /* FFEffectInfo.m */,
-				30200F4A1BCF1827002955FD /* FFHardlightAlphaSwap.m */,
-				30200F4C1BCF1853002955FD /* FFHardlightAlphaSwap.h */,
-				30139BAA16272D6100B0547C /* FFInfoDialogVC.h */,
-				30139BAB16272D6100B0547C /* FFInfoDialogVC.m */,
-				309CE56C1603B14400F1FAF5 /* FFViewController.h */,
-				309CE56D1603B14400F1FAF5 /* FFViewController.m */,
+				309CE5691603B14400F1FAF5 /* SPAppDelegate.h */,
+				309CE56A1603B14400F1FAF5 /* SPAppDelegate.m */,
+				30925ACD1669808C00239956 /* SPEffectInfo.h */,
+				30925ACE1669808C00239956 /* SPEffectInfo.m */,
+				30200F4E1BD1ACCF002955FD /* SPFilterView.h */,
+				30200F4F1BD1ACCF002955FD /* SPFilterView.m */,
+				30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */,
+				30200F4C1BCF1853002955FD /* SPHardlightAlphaSwap.h */,
+				B95AC9E71AADB14B004F09FC /* SPHomeViewController.h */,
+				B95AC9E81AADB14B004F09FC /* SPHomeViewController.m */,
+				30139BAA16272D6100B0547C /* SPInfoDialogVC.h */,
+				30139BAB16272D6100B0547C /* SPInfoDialogVC.m */,
+				309CE56C1603B14400F1FAF5 /* SPViewController.h */,
+				309CE56D1603B14400F1FAF5 /* SPViewController.m */,
 				30200F4D1BD16F77002955FD /* OstetsoConfig.h */,
 				309CE5841607ED5000F1FAF5 /* Resources */,
 				E4FA28E3191EC8F40090FA0F /* Images.xcassets */,
@@ -295,11 +300,11 @@
 		309CE5861607ED6A00F1FAF5 /* XIB Files */ = {
 			isa = PBXGroup;
 			children = (
-				B95AC9EE1AADB1A4004F09FC /* HomeViewController_iPad.xib */,
-				B95AC9E91AADB14B004F09FC /* HomeViewController.xib */,
-				302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */,
-				309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */,
-				30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */,
+				B95AC9EE1AADB1A4004F09FC /* SPHomeViewController_iPad.xib */,
+				B95AC9E91AADB14B004F09FC /* SPHomeViewController.xib */,
+				302F3EC21627885F00DA4C07 /* SPInfoDialogVC.xib */,
+				309CE56F1603B14400F1FAF5 /* SPViewController_iPhone.xib */,
+				30DA061D1625F956006DBCE7 /* SPViewController_iPad.xib */,
 			);
 			name = "XIB Files";
 			sourceTree = "<group>";
@@ -456,7 +461,7 @@
 				E414659F1939428C000B79BE /* SharePictures_Sharing_Grid.png in Resources */,
 				E414659E1939428C000B79BE /* SharePictures_InfoPage_Banner_toosmallmaybe.png in Resources */,
 				B95ACA041AADC5E0004F09FC /* LoadPhoto_HomescreenButton@2x.png in Resources */,
-				309CE5711603B14400F1FAF5 /* FFViewController_iPhone.xib in Resources */,
+				309CE5711603B14400F1FAF5 /* SPViewController_iPhone.xib in Resources */,
 				B9AC53F61AAF201B00F5A9A3 /* SharePictures_HomePage_Banner.png in Resources */,
 				30F5E08A1B681F5E00DBB713 /* Ostetso.bundle in Resources */,
 				B95AC9FF1AADC569004F09FC /* UseCamera_HomescreenButton.png in Resources */,
@@ -475,18 +480,18 @@
 				30DA060616251F81006DBCE7 /* swapcam_hilite.png in Resources */,
 				30DA060716251F81006DBCE7 /* swapcam_hilite@2x.png in Resources */,
 				B95ACA031AADC5E0004F09FC /* LoadPhoto_HomescreenButton.png in Resources */,
-				B95AC9EF1AADB1A4004F09FC /* HomeViewController_iPad.xib in Resources */,
+				B95AC9EF1AADB1A4004F09FC /* SPHomeViewController_iPad.xib in Resources */,
 				30DA060816251F81006DBCE7 /* swapcam.png in Resources */,
 				30DA060916251F81006DBCE7 /* swapcam@2x.png in Resources */,
-				30DA061F1625F956006DBCE7 /* FFViewController_iPad.xib in Resources */,
-				302F3EC41627885F00DA4C07 /* FFInfoDialogVC.xib in Resources */,
+				30DA061F1625F956006DBCE7 /* SPViewController_iPad.xib in Resources */,
+				302F3EC41627885F00DA4C07 /* SPInfoDialogVC.xib in Resources */,
 				E4E20D351627E76400A206CD /* InfoButton.png in Resources */,
 				E4E20D361627E76400A206CD /* InfoButton@2x.png in Resources */,
 				B9B4EE5A1AB1AC4B0071CB5B /* HomeInfoButton@2x.png in Resources */,
 				E4E20D3B1627E87B00A206CD /* CameraShutter_pressed.png in Resources */,
 				E4E20D3C1627E87B00A206CD /* CameraShutter_pressed@2x.png in Resources */,
 				E4E20D3D1627E87B00A206CD /* CameraShutter.png in Resources */,
-				B95AC9EB1AADB14C004F09FC /* HomeViewController.xib in Resources */,
+				B95AC9EB1AADB14C004F09FC /* SPHomeViewController.xib in Resources */,
 				E41465A01939428C000B79BE /* SharePictures_ShareButton_InfoPageGraphic.png in Resources */,
 				E4E20D3E1627E87B00A206CD /* CameraShutter@2x.png in Resources */,
 				30BAAA02166D3464005189F2 /* effects in Resources */,
@@ -539,25 +544,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30200F4B1BCF1827002955FD /* FFHardlightAlphaSwap.m in Sources */,
+				30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */,
 				309CE5671603B14400F1FAF5 /* main.m in Sources */,
-				309CE56B1603B14400F1FAF5 /* FFAppDelegate.m in Sources */,
-				309CE56E1603B14400F1FAF5 /* FFViewController.m in Sources */,
-				30139BAC16272D6100B0547C /* FFInfoDialogVC.m in Sources */,
-				30925ACF1669808C00239956 /* FFEffectInfo.m in Sources */,
-				B95AC9EA1AADB14C004F09FC /* HomeViewController.m in Sources */,
+				309CE56B1603B14400F1FAF5 /* SPAppDelegate.m in Sources */,
+				309CE56E1603B14400F1FAF5 /* SPViewController.m in Sources */,
+				30139BAC16272D6100B0547C /* SPInfoDialogVC.m in Sources */,
+				30200F501BD1ACCF002955FD /* SPFilterView.m in Sources */,
+				30925ACF1669808C00239956 /* SPEffectInfo.m in Sources */,
+				B95AC9EA1AADB14C004F09FC /* SPHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		302F3EC21627885F00DA4C07 /* FFInfoDialogVC.xib */ = {
+		302F3EC21627885F00DA4C07 /* SPInfoDialogVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				302F3EC31627885F00DA4C07 /* en */,
 			);
-			name = FFInfoDialogVC.xib;
+			name = SPInfoDialogVC.xib;
 			sourceTree = "<group>";
 		};
 		30479D621624DF620030C250 /* Localizable.strings */ = {
@@ -576,21 +582,21 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		309CE56F1603B14400F1FAF5 /* FFViewController_iPhone.xib */ = {
+		309CE56F1603B14400F1FAF5 /* SPViewController_iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				309CE5701603B14400F1FAF5 /* en */,
 			);
-			name = FFViewController_iPhone.xib;
+			name = SPViewController_iPhone.xib;
 			path = SharePictures;
 			sourceTree = "<group>";
 		};
-		30DA061D1625F956006DBCE7 /* FFViewController_iPad.xib */ = {
+		30DA061D1625F956006DBCE7 /* SPViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				30DA061E1625F956006DBCE7 /* en */,
 			);
-			name = FFViewController_iPad.xib;
+			name = SPViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

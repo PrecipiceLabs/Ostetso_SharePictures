@@ -7,7 +7,7 @@
 
 #import "GPUImageTwoInputFilter.h"
 
-@interface FFHardlightAlphaSwap : GPUImageTwoInputFilter
+@interface SPHardlightAlphaSwap : GPUImageTwoInputFilter
 {
 }
 

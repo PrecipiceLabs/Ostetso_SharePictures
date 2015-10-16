@@ -1,21 +1,17 @@
 //
-//  HomeViewController.m
+//  SPHomeViewController
 //  SharePictures
 //
 //  Copyright (c) 2015 Precipice Labs. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "FFAppDelegate.h"
-#import "FFInfoDialogVC.h"
-#import "FFEffectInfo.h"
-#import "FFViewController.h"
-@interface HomeViewController ()
+#import "SPHomeViewController.h"
+#import "SPAppDelegate.h"
+#import "SPInfoDialogVC.h"
+#import "SPEffectInfo.h"
+#import "SPViewController.h"
 
-
-@end
-
-@implementation HomeViewController
+@implementation SPHomeViewController
 @synthesize isIPad= _isIPad;
 
 - (void)viewDidLoad {
@@ -36,7 +32,7 @@
 }
 
 - (IBAction)infoTapped:(id)sender {
-    FFInfoDialogVC *infoDlg = [[FFInfoDialogVC alloc] init];
+    SPInfoDialogVC *infoDlg = [[SPInfoDialogVC alloc] init];
     [infoDlg setFPViewController: self];
     self.navigationController.navigationBarHidden=NO;
     [self.navigationController pushViewController:infoDlg animated:YES];
@@ -44,14 +40,14 @@
 
 - (IBAction)cameraTapped:(id)sender
 {
-    FFViewController *viewController;
+    SPViewController *viewController;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        viewController = [[FFViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
     }
     else
     {
-        viewController = [[FFViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
     }
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -87,14 +83,14 @@
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    FFViewController *viewController;
+    SPViewController *viewController;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        viewController = [[FFViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPhone" bundle:nil];
     }
     else
     {
-        viewController = [[FFViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
+        viewController = [[SPViewController alloc] initWithNibName:@"FFViewController_iPad" bundle:nil];
     }
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];

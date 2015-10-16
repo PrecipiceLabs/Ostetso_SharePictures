@@ -6,11 +6,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class HomeViewController;
+@class SPHomeViewController;
 
-@interface FFInfoDialogVC : UIViewController <UIWebViewDelegate>
+@interface SPInfoDialogVC : UIViewController <UIWebViewDelegate>
 {
-    HomeViewController *_ffVC;
+    SPHomeViewController *_ffVC;
 
     IBOutlet UIActivityIndicatorView *_activityIndicator;
 
@@ -19,6 +19,6 @@
     NSString *_currentHelpEvent;
 }
 
-- (void) setFPViewController: (HomeViewController *)ffVC;
+- (void) setFPViewController: (SPHomeViewController *)ffVC;
 
 @end
