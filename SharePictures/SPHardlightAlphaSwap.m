@@ -43,10 +43,6 @@ NSString *const kGPUImageHardLightBlendAlphaSwapFragmentShaderString = SHADER_ST
          ba = overlay.a * base.a - 2.0 * (base.a - base.b) * (overlay.a - overlay.b) + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);
      }
 
-     //     ratemp = ratemp * overlay.a;
-     //     ga = ga * overlay.a;
-     //     ba = ba * overlay.a;
-     
      gl_FragColor = vec4(ratemp, ga, ba, overlay.a);
  }
 );

@@ -127,15 +127,16 @@ typedef enum
 - (IBAction)reset:(id)sender;
 - (IBAction)shareImage:(id)sender;
 - (IBAction)effectAmountValueChanged:(id)sender;
-@property (nonatomic, strong) CMMotionManager *motionManager;   // To get accelerator rotation
+
+@property (nonatomic, strong) CMMotionManager *motionManager;          // To get accelerator rotation
 @property (nonatomic) UIInterfaceOrientation deviceOrientation;
-@property (nonatomic ,strong) NSString *checkOrientation;       // Putting rotation string to compare deviceOrientation
-@property (strong,nonatomic) NSString *getImage; // Passing string to differentiate between native gallery and live camera mode
-@property (strong,nonatomic) UIImage *selectedImage; // To get image selected from native Gallery.
-@property (strong,nonatomic) SPFilterView *backGroundFilter; // Declared this filterView to get the effect to be applied on image while saving
-@property (strong,nonatomic) GPUImagePicture *stillImagePicture; // Declared this property to apply filter on image selected from cameraRoll
-@property (strong, nonatomic) IBOutlet GPUImageView *previewImageView;// To show the image into the effect preview mode
-@property (nonatomic,strong) UIImage *anotherImage; // Image to apply effect while saving image
+@property (nonatomic ,strong) NSString *checkOrientation;              // Putting rotation string to compare deviceOrientation
+@property (strong,nonatomic) NSString *getImage;                       // Passing string to differentiate between native gallery and live camera mode
+@property (strong,nonatomic) UIImage *selectedImage;                   // To get image selected from native Gallery.
+@property (strong,nonatomic) SPFilterView *backGroundFilter;           // Declared this filterView to get the effect to be applied on image while saving
+@property (strong,nonatomic) GPUImagePicture *stillImagePicture;       // Declared this property to apply filter on image selected from cameraRoll
+@property (strong, nonatomic) IBOutlet GPUImageView *previewImageView; // To show the image into the effect preview mode
+@property (nonatomic,strong) UIImage *anotherImage;                    // Image to apply effect while saving image
 @property (nonatomic,strong) GPUImagePicture *foregroundPicture;
 
 @end

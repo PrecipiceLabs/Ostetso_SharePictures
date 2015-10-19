@@ -8,6 +8,8 @@
 
 @class SPHomeViewController;
 
+// A simple vc that shows our app's documentation in a web browser.
+
 @interface SPInfoDialogVC : UIViewController <UIWebViewDelegate>
 {
     SPHomeViewController *_ffVC;

@@ -7,6 +7,8 @@
 
 #import "GPUImageTwoInputFilter.h"
 
+// A filter derived from GPUImage's hardlight filter.  Results are same as hardlight except we preserve the alpha from the foreground
+
 @interface SPHardlightAlphaSwap : GPUImageTwoInputFilter
 {
 }

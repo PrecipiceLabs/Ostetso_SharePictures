@@ -31,6 +31,7 @@
     self.navigationController.navigationBarHidden=YES;
 }
 
+// User selected the info button
 - (IBAction)infoTapped:(id)sender {
     SPInfoDialogVC *infoDlg = [[SPInfoDialogVC alloc] init];
     [infoDlg setFPViewController: self];
@@ -38,6 +39,7 @@
     [self.navigationController pushViewController:infoDlg animated:YES];
 }
 
+// User selected the carera button, we will process a live effect from the device camera
 - (IBAction)cameraTapped:(id)sender
 {
     SPViewController *viewController;
@@ -58,11 +60,13 @@
 
 }
 
+// User selected the Ostetso gallery button
 - (IBAction)galleryTapped:(id)sender
 {
     [Ostetso showGallery];
 }
 
+// User selected the photo button, we will process an effect applied to an image loaded from the camera roll
 - (IBAction)photosTapped:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary])
@@ -72,12 +76,14 @@
         picker.allowsEditing = NO;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         picker.navigationBar.barStyle = UIBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
         picker.navigationBar.tintColor = [UIColor blackColor];
         UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
         [tempWindow.rootViewController presentViewController:picker animated:YES completion:nil];
     }
 }
+
+// The user selected an image to process
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
@@ -113,6 +119,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
+
 -(BOOL)prefersStatusBarHidden {
     return YES;
 }
@@ -142,24 +149,28 @@
 
 #pragma mark Ostetso delegate methods
 
+// Callback from Ostetso, the user closed the gallery
 - (void) galleryComplete: (BOOL) successful
 {
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+// Callback from Ostetso, the user closed the image sharing view
 - (void) shareComplete: (NSError *) error
 {
 }
 
+// We failed to upload the image to the Ostetso server
 - (void) uploadFailedWithError: (NSError *) error
 {
 }
 
+// We successfully uploaded the image to Ostetso's servers
 - (void)didUploadImageWithID:(NSString*)picID URL:(NSString*)picURL
 {
 }
 
-
+// The app received a notification via Ostetso, simply display a UIAlertView with the notification message
 - (void) notificationReceived: (NSString *)message
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"

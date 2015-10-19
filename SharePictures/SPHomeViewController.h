@@ -9,6 +9,8 @@
 #import "SPInfoDialogVC.h"
 #import "Ostetso/Ostetso.h"
 
+// The view controller from the home screen
+
 @interface SPHomeViewController : UIViewController <OstetsoDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     BOOL _oldDeviceModel;  // iPhone4, iPad2, or iPod2 or prior
