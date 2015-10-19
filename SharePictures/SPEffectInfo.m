@@ -9,17 +9,23 @@
 #import "SPAppDelegate.h"
 #import "SPViewController.h"
 
+@interface SPEffectInfo()
+
+@property (atomic, strong) NSDictionary *effectInfo;
+
+@end
+
 
 @implementation SPEffectInfo
 
-- (id) initWithFSEInfo: (NSDictionary *)fseInfo
+- (id) initWithFxInfo: (NSDictionary *)fxInfo
 {
     if (!(self = [super init]))
     {
         return nil;
     }
     
-    _effectInfo = fseInfo;
+    _effectInfo = fxInfo;
 
     return self;
 }

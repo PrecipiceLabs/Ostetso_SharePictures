@@ -537,24 +537,24 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         NSString *ext = [file pathExtension];
         if ([ext isEqualToString: @"fx"])    // Got a FaceShip effect description file
         {
-            NSString *fsepath = [fxPath stringByAppendingPathComponent: file];
-            NSString *fseFile = [NSString stringWithContentsOfFile:fsepath encoding:NSASCIIStringEncoding error: &error];
-            if (nil == fseFile)
+            NSString *fxpath = [fxPath stringByAppendingPathComponent: file];
+            NSString *fxFile = [NSString stringWithContentsOfFile:fxpath encoding:NSASCIIStringEncoding error: &error];
+            if (nil == fxFile)
             {
-                NSLog(@"Error reading Fx File %@ : %@", fsepath, error);
+                NSLog(@"Error reading Fx File %@ : %@", fxpath, error);
                 continue;
             }
 
-            NSDictionary *fseInfo = [fseFile propertyListFromStringsFileFormat];
+            NSDictionary *fxInfo = [fxFile propertyListFromStringsFileFormat];
             
-            NSString *name = [fseInfo objectForKey: @"effectName"];
+            NSString *name = [fxInfo objectForKey: @"effectName"];
             if (name)
             {
                 SPEffectInfo *effect = [_effectList objectForKey: name];
 
                 if (nil == effect)
                 {
-                    effect = [[SPEffectInfo alloc] initWithFSEInfo: fseInfo];
+                    effect = [[SPEffectInfo alloc] initWithFxInfo: fxInfo];
                 
 #ifndef DEBUG
                     // Only add the bevel effect for debug builds, just for developers!
@@ -878,7 +878,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             //            NSAssert(0, @"Invalid or missing file for %@", effect.effectName);
         }
 
-        effect.button = effectButton;
+        //        effect.button = effectButton;
         
         [effectButton setTitle: [effect getEffectName] forState: UIControlStateNormal];
         
@@ -1411,32 +1411,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         void (*setAmt)(id, SEL, CGFloat) = (void (*)(id, SEL, CGFloat)) objc_msgSend;
         setAmt(filterView.filter, NSSelectorFromString(amountMethodName), amount);
-     
-        // Checking if image is from native gallery and then applying effect on image
-/*
-        if ([self.getImage isEqualToString:@"fromGallery"])
-        {
-            [_filterView.view setHidden:YES];
-            // Checking if we need to reload image on _previewImageView or not
-            if (reloadImage==YES)
-            {
-             _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
-            }
-           [filterView.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(_previewImageView.sizeInPixels.width,_previewImageView.sizeInPixels.height)];
-            [_stillImagePicture addTarget:filterView.filter];
-            [filterView.filter addTarget:_previewImageView];
-            [_stillImagePicture processImage];
-            
-            // FIX MITCH TESTING
-            if (_foregroundPicture)
-            {
-                [_foregroundPicture processImage];
-                [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
-            }
-            
-            reloadImage=NO;
-        }
-*/
+
      }
     
     // Checking if image is from native gallery and then applying effect on image
@@ -1453,7 +1428,6 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [filterView.filter addTarget:_previewImageView];
         [_stillImagePicture processImage];
         
-        // FIX MITCH TESTING
         if (_foregroundPicture)
         {
             [_foregroundPicture processImage];
