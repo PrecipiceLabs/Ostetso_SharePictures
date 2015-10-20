@@ -30,12 +30,6 @@ typedef enum
 @interface SPViewController : UIViewController <GPUImageVideoCameraDelegate, UIGestureRecognizerDelegate, UINavigationBarDelegate,
                                                 UIAlertViewDelegate>
 {
-    GPUImageStillCamera *stillCamera;
-    GPUImageOutput<GPUImageInput> *filter, *secondFilter, *terminalFilter;
-    GPUImageView *primaryView;
-    
-    
-    
     GPUImageStillCamera *_camera;
     
     SPFilterView *_filterView;
@@ -49,12 +43,6 @@ typedef enum
     // Sharing
     BOOL _shareDialogActive;
 
-	// Operation queue for uploading
-	NSOperationQueue*	_operationQueue;
-    
-    // Shader uniforms
-    float _shrinkScaleValue;
-    
     // Outlets
     __weak IBOutlet UIImageView             *_capturedImageView;
     __weak IBOutlet UIToolbar               *_toolbar;
@@ -62,24 +50,16 @@ typedef enum
     // Tool Bar Buttons
     IBOutlet UIBarButtonItem                *_resetButton;
     IBOutlet UIBarButtonItem                *_shareButton;
-    IBOutlet UIBarButtonItem                *_leftFixedSpace;
-    IBOutlet UIBarButtonItem                *_leftFlexSpace;
-    IBOutlet UIBarButtonItem                *_rightFixedSpace;
-    
-    __weak IBOutlet UILabel                 *_shareLabel;
-    
+
+   
     // On- Screen Buttons
     __weak IBOutlet UIButton                *_switchCameraButton;
 	__weak IBOutlet UIButton                *_flashToggleButton;
     __weak IBOutlet UIButton                *_cameraButton;
     
     __weak IBOutlet UISlider                *_effectAmountSlider;
-    __unsafe_unretained IBOutlet UILabel    *_shrinkScale;
-    __unsafe_unretained IBOutlet UISlider   *_shrinkScaleSlider;
     __weak IBOutlet UIActivityIndicatorView *_activityIndicator;
-    __weak IBOutlet UIImageView             *_testImageView;
     __weak IBOutlet UIScrollView            *_effectChoiceView;    // Contains FX buttons.  Subview of _effectSelectionView
-    __weak IBOutlet UIView                  *_effectSelectionView; // Contains _effectChoiceView
 
     // Gestures
     UISwipeGestureRecognizer               *_swipeRightRecognizer;
@@ -95,7 +75,6 @@ typedef enum
 	CGPoint							_xlateStartPos;
     CGSize                          _cameraRes;
     float                           _videoToDisplayScale;
-    CGSize                          _ipadToiPhoneRatio;
     CGPoint                         _flipScale;
     PanStatus                       _panStatus;
     CGRect                          _origFilterViewFrame;
@@ -110,11 +89,12 @@ typedef enum
     int                            _setOverlayPending;
     
     // State
-    BOOL                            _isIPad;
     BOOL                            _isSavingImage;
     BOOL                            _frontCamera;
     BOOL                            _showEffectsPalette;
     BOOL                            _oldDeviceModel;  // iPhone4, iPad2, or iPod2 or prior
+    BOOL                            _reloadImage;     // To check the need of reloading _selectedImage on GPUImageView after saving image
+
 }
 
 @property BOOL isIPad;
@@ -136,7 +116,6 @@ typedef enum
 @property (strong,nonatomic) SPFilterView *backGroundFilter;           // Declared this filterView to get the effect to be applied on image while saving
 @property (strong,nonatomic) GPUImagePicture *stillImagePicture;       // Declared this property to apply filter on image selected from cameraRoll
 @property (strong, nonatomic) IBOutlet GPUImageView *previewImageView; // To show the image into the effect preview mode
-@property (nonatomic,strong) UIImage *anotherImage;                    // Image to apply effect while saving image
 @property (nonatomic,strong) GPUImagePicture *foregroundPicture;
 
 @end

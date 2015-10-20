@@ -104,7 +104,6 @@
     viewController.getImage=@"fromGallery";
 
     viewController.selectedImage=chosenImage;
-    viewController.anotherImage=chosenImage;
     [viewController setCameraCaptureState: NO];
     
     [self.navigationController pushViewController:viewController animated:YES];

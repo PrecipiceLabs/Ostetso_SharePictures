@@ -19,28 +19,19 @@
 #import "SPFilterView.h"
 #import "Ostetso/Ostetso.h"
 
-// Variable for EXIF rotation tag
-int rotationNumber;
-// To check the need of reloading _selectedImage on GPUImageView after saving image
-BOOL reloadImage;
-
 
 
 @implementation SPViewController
 
-@synthesize isIPad = _isIPad;
-@synthesize  effectSelectionView = _effectSelectionView;
-@synthesize previewImageView=_previewImageView; // Synthesizing property of image to be shown as preview of image
 #pragma mark -
 #pragma mark Initialization and teardown
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-	NSLog(@"Our didReceiveMemoryWarning method got called.");
+    NSLog(@"Our didReceiveMemoryWarning method got called.");
 }
 
 #pragma mark - View lifecycle
@@ -55,48 +46,34 @@ BOOL reloadImage;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    CGSize iphoneViewDims = CGSizeMake(320.f, 436.f);
-    CGSize ipadViewDims = CGSizeMake(768.f, 980.f);
-    _ipadToiPhoneRatio = CGSizeMake(ipadViewDims.width/iphoneViewDims.width,
-                                    ipadViewDims.height/iphoneViewDims.height);
     
     _showEffectsPalette = NO;
-    _shrinkScaleValue = 1.f;
     _isSavingImage = NO;
     
     _activityIndicator.color = [UIColor whiteColor];
     
-    _shrinkScaleSlider.value = _shrinkScaleValue;
-    _shrinkScale.text = [NSString stringWithFormat:@"%f", _shrinkScaleValue];
-
     _panStatus = kPanStatusOff;
-
+    
     _swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     _swipeRightRecognizer.direction  = UISwipeGestureRecognizerDirectionRight;
-	_swipeRightRecognizer.delegate = self;
+    _swipeRightRecognizer.delegate = self;
     [self.view addGestureRecognizer:_swipeRightRecognizer];
     
     _swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     _swipeLeftRecognizer.direction  = UISwipeGestureRecognizerDirectionLeft;
-	_swipeLeftRecognizer.delegate = self;
+    _swipeLeftRecognizer.delegate = self;
     [self.view addGestureRecognizer:_swipeLeftRecognizer];
-
+    
     _overlayScale = CGPointMake(1.f, 1.f);
     _aspectRatioCorrection = CGPointMake(1.f, 1.f);
     _flipScale = CGPointMake(1.f, 1.f);
-
+    
     _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     
     _currentEffect = 0;
     [self buildEffectList];
     [self loadEffectChoicesButtons];
-
-	_operationQueue = [[NSOperationQueue alloc] init];
     
-    _shareLabel.hidden = YES;
-    _shareLabel.textColor = [UIColor blackColor];
-    _shareLabel.font = [UIFont fontWithName: @"HelveticaNeue-Light" size:13];
-
     // Alloc the camera/filter view
     _origFilterViewFrame = self.view.frame;
     _filterView = [[SPFilterView alloc] initWithFrame: _origFilterViewFrame];
@@ -123,11 +100,11 @@ BOOL reloadImage;
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-              
+                
                 float xx = -accelerometerData.acceleration.x;
                 float yy = accelerometerData.acceleration.y;
                 float angle = atan2(yy, xx);
-
+                
                 // could fire a custom shouldAutorotateToInterfaceOrientation-event here.
                 if(angle >= -2.25 && angle <= -0.75)
                 {
@@ -165,11 +142,25 @@ BOOL reloadImage;
         }];
     } else
         NSLog(@"not active");
-
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    // To avoid the still image popping into view, do a quick dissolve to make it visible
+    if (NO == [self.getImage isEqualToString:@"fromCamera"])
+    {
+        _previewImageView.alpha = 0.f;
+        [_previewImageView setHidden:NO];
+
+        [_stillImagePicture processImage];
+
+        [UIView animateWithDuration:.3f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:
+         ^{
+             _previewImageView.alpha = 1.f;
+         }
+         completion: nil];
+    }
 }
 
 
@@ -179,21 +170,14 @@ BOOL reloadImage;
     _origFilterViewFrame = self.view.frame;
     _filterView.view.frame = _origFilterViewFrame;
     
-    CGRect shareLabelFrame = _shareLabel.frame;
-    shareLabelFrame.origin.y = _toolbar.frame.origin.y;
-    shareLabelFrame.origin.x = _toolbar.frame.size.width - shareLabelFrame.size.width - (_isIPad ? 120 : 70);
-    _shareLabel.frame = shareLabelFrame;
-
+    
     CGAffineTransform trans = CGAffineTransformMakeRotation(-M_PI * 0.5);
     _effectAmountSlider.transform = trans;
     CGRect sliderFrame = _effectAmountSlider.frame;
     sliderFrame.origin.x = self.view.frame.size.width - sliderFrame.size.width - 5;
-    sliderFrame.origin.y = _toolbar.frame.origin.y
-                           - _effectSelectionView.frame.size.height
-                           - sliderFrame.size.height
-                           - 10.f;
+    sliderFrame.origin.y = _toolbar.frame.origin.y - _effectSelectionView.frame.size.height - sliderFrame.size.height - 10.f;
     _effectAmountSlider.frame = sliderFrame;
-
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *currEffect = [prefs objectForKey: @"currentEffect"];
     
@@ -208,41 +192,42 @@ BOOL reloadImage;
     }
     else if ([self.getImage isEqualToString:@"fromGallery"])
     {
-        reloadImage=NO;
+        [_previewImageView setHidden:YES];
+        _reloadImage=NO;
         _backGroundFilter=[[SPFilterView alloc]init];
-
+        
         if (_selectedImage.size.height<_selectedImage.size.width) {
             
             [_previewImageView layoutSubviews];
-            [_previewImageView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill]; // set the GPUImageView to fill with complete image
+            [_previewImageView setFillMode:kGPUImageFillModePreserveAspectRatio];
             
             [_previewImageView setContentMode:UIViewContentModeScaleAspectFit];
             _previewImageView.center=self.view.center;
-            if (_isIPad) {
+            if (_isIPad)
+            {
                 [_previewImageView setFrame:CGRectMake(0, 245, self.view.frame.size.width,550)];
             }
-            else{
-                [_previewImageView setFrame:CGRectMake(0, 145,self.view.frame.size.width,245)];
+            else
+            {
+                [_previewImageView setFrame:CGRectMake(0, 115,self.view.frame.size.width,245)];
             }
         }
         else {
-            if (_isIPad) {
+            if (_isIPad)
+            {
                 [_previewImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, 550)];
             }
             [_previewImageView layoutSubviews];
             [_previewImageView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill];
         }
         
-        [_previewImageView layoutSubviews];
-        [_previewImageView setFillMode:kGPUImageFillModePreserveAspectRatioAndFill]; // set the GPUImageView to fill with complete image
-        
         _selectedImage=[self fixRotation:_selectedImage];
-
+        
         _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
-
+        
         SPEffectInfo *effect = [_effectList objectForKey: _currentEffect];
         _toolbar.hidden = YES;
-        _shareLabel.hidden = YES;
+
         _effectSelectionView.hidden = NO;
         _cameraButton.hidden = NO;
         [_cameraButton setImage:[UIImage imageNamed:@"ShareShutter"] forState:UIControlStateNormal];
@@ -254,7 +239,7 @@ BOOL reloadImage;
         [self.view setBackgroundColor:[UIColor blackColor]];
         [self setCurrentEffect: currEffect ? currEffect : @"Sketch" forFilterView:_filterView];
     }
-   
+    
     
     UINavigationController *nav = [self navigationController];
     if (!nav)
@@ -269,8 +254,7 @@ BOOL reloadImage;
     [infoButton setImage:[UIImage imageNamed:@"ViewGalleryIcon.png"] forState:UIControlStateNormal];
     UIBarButtonItem *infoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     self.navigationItem.rightBarButtonItem = infoButtonItem;
-    
-    _testImageView.hidden = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -278,16 +262,13 @@ BOOL reloadImage;
     // Stop camera capture before the view went off the screen in order to prevent a crash from the camera still sending frames
     [_camera stopCameraCapture];
     
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 
 - (void)viewWillUnload
 {
-	// Cancel all operations so they don't try to notify us of completion and crash.
-	[_operationQueue cancelAllOperations];
-
-	[super viewWillUnload];
+    [super viewWillUnload];
 }
 
 
@@ -295,29 +276,23 @@ BOOL reloadImage;
 {
     _previewImageView=nil;
     _capturedImageView = nil;
-    _shrinkScale = nil;
-    _shrinkScaleSlider = nil;
-
+    
     _resetButton = nil;
     _toolbar = nil;
     _cameraButton = nil;
     _shareButton = nil;
     _switchCameraButton = nil;
-
+    
     _activityIndicator = nil;
-    _testImageView = nil;
-    _leftFixedSpace = nil;
-    _leftFlexSpace = nil;
-    _rightFixedSpace = nil;
+
     _effectChoiceView = nil;
     _effectSelectionView = nil;
-	_operationQueue = nil;
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-        [super viewDidUnload];
+    [super viewDidUnload];
     _effectAmountSlider = nil;
-    _shareLabel = nil;
 
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -399,7 +374,7 @@ BOOL reloadImage;
     [self makeFilterViewCurrentForFilterView: _filterView];
     
     _filterView.view.frame = _origFilterViewFrame;
-
+    
     _tempFilterView = nil;
 }
 
@@ -408,10 +383,10 @@ BOOL reloadImage;
     static bool changeInProg = NO;
     if (changeInProg) return;
     changeInProg = YES;
-
+    
     CGRect newFrame = _origTempViewFrame;
     newFrame.origin.x *= -1.f;
-
+    
     //    [UIView animateWithDuration:panVelocity delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:
     
     [UIView animateWithDuration:.3f delay:0.1f options:UIViewAnimationOptionCurveEaseOut animations:
@@ -427,14 +402,14 @@ BOOL reloadImage;
              _filterView.view.frame = _origFilterViewFrame;
          }
      }
-     completion:^(BOOL finished)
+                     completion:^(BOOL finished)
      {
          [self completePan: switchToNew];
          changeInProg = NO;
          _panStatus = kPanStatusOff;
          [self setActivityIndicatorAnimatingPerDeviceAge: NO];
      }];
-
+    
 }
 
 - (void) panEffect: (UISwipeGestureRecognizer *) swipeRecognizer
@@ -462,7 +437,7 @@ BOOL reloadImage;
     {
         [self setActivityIndicatorAnimatingPerDeviceAge: NO];
     }
-
+    
 }
 
 
@@ -490,16 +465,16 @@ BOOL reloadImage;
 - (BOOL) hasFrontCamera
 {
     BOOL hasFrontCamera = NO;
-	
-	NSArray *devices = [AVCaptureDevice devicesWithMediaType: AVMediaTypeVideo];
-	for (AVCaptureDevice *device in devices)
+    
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType: AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices)
     {
         if ([device position] == AVCaptureDevicePositionFront)
         {
             hasFrontCamera = YES;
             break;
         }
-	}
+    }
     
     return hasFrontCamera;
 }
@@ -507,7 +482,7 @@ BOOL reloadImage;
 NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 {
     static NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch | NSNumericSearch |
-                                                      NSWidthInsensitiveSearch | NSForcedOrderingSearch;
+    NSWidthInsensitiveSearch | NSForcedOrderingSearch;
     
     NSRange string1Range = NSMakeRange(0, [string1 length]);
     
@@ -527,8 +502,8 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:fxPath error:&error];
     
     NSArray *sortedDirectoryContents = [directoryContents sortedArrayUsingFunction:finderSortWithLocale
-                                                          context:(__bridge void *)([NSLocale currentLocale])];
-
+                                                                           context:(__bridge void *)([NSLocale currentLocale])];
+    
     _effectList = [[NSMutableDictionary alloc] init];
     _sortedEffectTitles = [[NSMutableArray alloc] init];
     
@@ -544,18 +519,18 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                 NSLog(@"Error reading Fx File %@ : %@", fxpath, error);
                 continue;
             }
-
+            
             NSDictionary *fxInfo = [fxFile propertyListFromStringsFileFormat];
             
             NSString *name = [fxInfo objectForKey: @"effectName"];
             if (name)
             {
                 SPEffectInfo *effect = [_effectList objectForKey: name];
-
+                
                 if (nil == effect)
                 {
                     effect = [[SPEffectInfo alloc] initWithFxInfo: fxInfo];
-                
+                    
 #ifndef DEBUG
                     // Only add the bevel effect for debug builds, just for developers!
                     if ([[effect getEffectName] isEqualToString:@"Bevel"] ||
@@ -588,12 +563,12 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             }
         }
     }
-
+    
     return nil;
 }
 
 - (void) setEffect : (NSString *)currentEffectName
-                forFilterView: (SPFilterView *) filterView
+      forFilterView: (SPFilterView *) filterView
 {
     filterView.effect = [_effectList objectForKey: currentEffectName];
     
@@ -602,7 +577,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         effectClassname = @"GPUImageSketchFilter";
     }
-
+    
     filterView.filter = [[NSClassFromString(effectClassname) alloc] init];
     
     // Applied check, if its liveCamera Mode or image from nativeGallery
@@ -628,7 +603,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         [_foregroundPicture processImage];
         [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
     }
-
+    
 }
 
 - (void) makeFilterViewCurrentForFilterView: (SPFilterView *) filterView
@@ -683,19 +658,19 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 
 - (void) setCurrentEffect : (NSString *)currentEffectName
-                 forFilterView: (SPFilterView *)filterView
+             forFilterView: (SPFilterView *)filterView
 {
     if (_currentEffect && [_currentEffect isEqualToString: currentEffectName])
     {
         return;
     }
- 
+    
     [_camera stopCameraCapture];
     
     [self setEffect: currentEffectName forFilterView: filterView];
     [self makeFilterViewCurrentForFilterView: filterView];
     [self setFilterAmount: [filterView.effect amountSliderDefault] forFilterView: filterView];
-
+    
     // Applied check, if its liveCamera Mode or image from nativeGallery
     if ([self.getImage isEqualToString:@"fromGallery"])
     {
@@ -723,7 +698,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     [self.view insertSubview:tempFilterView.view atIndex: 1];
     
     [self setEffect: effectName forFilterView: tempFilterView];
-
+    
     [self setFilterAmount: [tempFilterView.effect amountSliderDefault] forFilterView: tempFilterView];
     
     return tempFilterView;
@@ -767,15 +742,15 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     __block SPFilterView *tempFilterView;
     tempFilterView = [[SPFilterView alloc] initWithFrame: viewRect];
     [self.view insertSubview:tempFilterView.view atIndex: 1];
-
+    
     [self setCurrentEffect: effectName forFilterView: tempFilterView];
     
     [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:
      ^{
-        tempFilterView.view.frame = _filterView.view.frame;
+         tempFilterView.view.frame = _filterView.view.frame;
          _filterView.view.frame = newViewRect;
      }
-     completion:^(BOOL finished)
+                     completion:^(BOOL finished)
      {
          [_filterView.view removeFromSuperview];
          [_camera removeTarget:_filterView.filter];
@@ -809,7 +784,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     }
     
     // NSLog(@"Selected Button %@", newEffectName);
-
+    
     [self setActivityIndicatorAnimatingPerDeviceAge: YES];
     [self performSelector:@selector(setEffect:) withObject:newEffectName afterDelay:.01];
 }
@@ -849,7 +824,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                 effectButton.frame = buttonFrame;
                 
                 barHt = fmaxf(barHt, btnImage.size.height+btnOffset);
-
+                
                 [effectButton setImage:btnImage forState:UIControlStateNormal];
                 
                 if ([effect getIconSelectedImageFile])
@@ -858,15 +833,15 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
                     UIImage *selbtnImage = [UIImage imageWithContentsOfFile: seliconPath];
                     [effectButton setImage:selbtnImage forState:UIControlStateSelected];
                 }
-
+                
                 haveIconFile = YES;
                 lastX += btnImage.size.width + buttonSep;
                 
                 imageButtonFrame = buttonFrame;
-
+                
             }
         }
-
+        
         if (NO == haveIconFile)
         {
             effectButton = [UIButton buttonWithType: UIButtonTypeRoundedRect];
@@ -877,7 +852,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             
             //            NSAssert(0, @"Invalid or missing file for %@", effect.effectName);
         }
-
+        
         //        effect.button = effectButton;
         
         [effectButton setTitle: [effect getEffectName] forState: UIControlStateNormal];
@@ -901,14 +876,14 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     frame.size.height = barHt;
     frame.origin.y = self.view.frame.size.height - frame.size.height;
     _effectSelectionView.frame = frame;
-
+    
     // Set the frame for the scrolled list of effects buttons
     frame = _effectChoiceView.frame;
     frame.origin.y = 0;
     frame.size.height = imageButtonFrame.size.height;
     _effectChoiceView.frame = frame;
     _effectChoiceView.contentSize = CGSizeMake(lastX, imageButtonFrame.size.height);
-
+    
 }
 
 - (void)setupCamera
@@ -921,10 +896,10 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     _camera = [[GPUImageStillCamera alloc] initWithSessionPreset: captureSessionPreset
                                                   cameraPosition: [self hasFrontCamera] ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack];
     _camera.horizontallyMirrorFrontFacingCamera = YES;
-
+    
     _camera.outputImageOrientation = UIInterfaceOrientationPortrait;
     _camera.delegate = self;
-
+    
     self.title = @"Mask";
     
     [_camera startCameraCapture];
@@ -937,7 +912,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     
     // _camera.runBenchmark = YES;   // For debugging frame rate
     filterview.view.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
-
+    
     [filterview.filter addTarget:filterview.view];
     //[_backGroundFilter.filter addTarget:filterview.filter];
 }
@@ -947,7 +922,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     _effectAmountSlider.hidden = YES;
     _switchCameraButton.hidden = YES;
     _flashToggleButton.hidden = YES;
-
+    
 }
 
 - (void) showOSCsForEffect: (SPEffectInfo *) effect
@@ -955,7 +930,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     if (_capturedImageView.hidden == NO) return;    // don't mess with the camera state if we're previewing a captured image
     
     _cameraButton.enabled = YES;
-        
+    
     _effectAmountSlider.hidden = [effect hasAmountSlider] ? NO : YES;
     
     if (YES == _camera.frontFacingCameraPresent)
@@ -979,13 +954,12 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     if (_isSavingImage == YES) return;              // don't mess with the camera state if we're in the process of saving.  This can happen when the OS prompts for camera roll permissions on first run
     
     [self hideOSCs];
-
+    
     SPEffectInfo *effect = [_effectList objectForKey: _currentEffect];
     
     if (cameraActive)
     {
         _toolbar.hidden = YES;
-        _shareLabel.hidden = YES;
         _effectSelectionView.hidden = NO;
         _cameraButton.hidden = NO;
         [self showOSCsForEffect: effect];
@@ -1004,7 +978,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 - (void) setActivityIndicatorAnimatingPerDeviceAge: (BOOL) animating
 {
     if (NO == _oldDeviceModel) return;
-
+    
     [self setActivityIndicatorAnimating: animating];
 }
 
@@ -1016,8 +990,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     _resetButton.enabled = buttonActive;
     _cameraButton.enabled = buttonActive;
     _effectAmountSlider.enabled = buttonActive;
-    _shareLabel.enabled = buttonActive;
-
+    
     if (animating)
     {
         [_activityIndicator startAnimating];
@@ -1030,34 +1003,37 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 
 - (UIImage*)scaleImageToMaxDimension:(UIImage *)image maxSize:(unsigned int)maxSize
 {
-	float sizeFactor = maxSize / (image.size.width > image.size.height ? image.size.width : image.size.height);
+    float sizeFactor = maxSize / (image.size.width > image.size.height ? image.size.width : image.size.height);
     
     if (sizeFactor > 1.)
     {
         return image;
     }
     
-	CGSize newSize;
-	newSize.width = image.size.width * sizeFactor;
-	newSize.height = image.size.height * sizeFactor;
+    CGSize newSize;
+    newSize.width = image.size.width * sizeFactor;
+    newSize.height = image.size.height * sizeFactor;
     
-	UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContext(newSize);
     
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextTranslateCTM(context, 0.0, newSize.height);
-	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-	CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, newSize.width, newSize.height), image.CGImage);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0.0, newSize.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, newSize.width, newSize.height), image.CGImage);
     
-	UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
-	UIGraphicsEndImageContext();
+    UIGraphicsEndImageContext();
     
-	return scaledImage;
+    return scaledImage;
 }
 
 - (void) saveToAlbum: (NSData *)imageData
 {
+    // Variable for EXIF rotation tag
+    int rotationNumber;
+
     if ([_checkOrientation isEqualToString:@"UIInterfaceOrientationLandscapeRight"]) {
         rotationNumber=8;
     }
@@ -1067,7 +1043,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     else {
         rotationNumber=1;
     }
-
+    
     [self setCameraCaptureState: NO];
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     _isSavingImage = YES;
@@ -1180,9 +1156,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     else
     {
         [_camera capturePhotoAsJPEGProcessedUpToFilter:_filterView.filter withCompletionHandler:^(NSData *processedJPEG, NSError *error)
-        {
+         {
              [self saveToAlbum: processedJPEG];
-        }];
+         }];
     }
 }
 
@@ -1218,15 +1194,15 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 {
     [_camera stopCameraCapture];
     [_camera rotateCamera];
-	if(_camera.cameraPosition == AVCaptureDevicePositionBack)
-	{
-		_flashToggleButton.hidden = NO;
-	}
-	else
-	{
-		_flashToggleButton.hidden = YES;
-	}
-
+    if(_camera.cameraPosition == AVCaptureDevicePositionBack)
+    {
+        _flashToggleButton.hidden = NO;
+    }
+    else
+    {
+        _flashToggleButton.hidden = YES;
+    }
+    
     _cameraRes = CGSizeMake(0.f, 0.f);
     
     [_camera startCameraCapture];
@@ -1241,14 +1217,14 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         return;
     }
     
-	if(_camera.inputCamera.torchMode == AVCaptureTorchModeOff)
-	{
+    if(_camera.inputCamera.torchMode == AVCaptureTorchModeOff)
+    {
         [_camera.inputCamera setTorchMode:AVCaptureTorchModeOn];
-	}
-	else
-	{
+    }
+    else
+    {
         [_camera.inputCamera setTorchMode:AVCaptureTorchModeOff];
-	}
+    }
     
     [_camera.inputCamera unlockForConfiguration];
     
@@ -1259,7 +1235,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     _image = nil;
     _capturedImageView.hidden = YES;
     _capturedImageView.image = nil;
-
+    
     [self setCameraCaptureState: YES];
 }
 
@@ -1297,52 +1273,52 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     // Share and save edited image selected from natvieGallery , 12-March-2015.
     if ([self.getImage isEqualToString:@"fromGallery"])
     {
-              reloadImage=YES;
+        _reloadImage=YES;
         // Applying effect to save image to gallery
-        _anotherImage=[self  fixRotation:_anotherImage];
-        NSLog(@"Orientation = %ld", (long)_anotherImage.imageOrientation);
-        GPUImagePicture *gpui=[[GPUImagePicture alloc]initWithImage:_anotherImage];
-        [_backGroundFilter.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(_anotherImage.size.width, _anotherImage.size.height)];
+        UIImage *tempImage = [self fixRotation: _selectedImage];
+        
+        GPUImagePicture *gpui = [[GPUImagePicture alloc] initWithImage: tempImage];
+        [_backGroundFilter.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(tempImage.size.width, tempImage.size.height)];
         
         [gpui addTarget:_backGroundFilter.filter];
         [gpui processImage];
         _imageSelected=[_backGroundFilter.filter imageFromCurrentlyProcessedOutput];
         
         _imageSelected=[self  fixRotation:_imageSelected];
-
+        
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         
         NSData *imageData = [_backGroundFilter.effect saveAsPng] ? UIImagePNGRepresentation(_imageSelected) : UIImageJPEGRepresentation(_imageSelected, 8.0);
         [library writeImageDataToSavedPhotosAlbum: imageData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
-        {
-            
-            if (error2)
-            {
-                NSLog(@"ERROR: the image failed to be written");
-                
-                NSString *saveFail;
-                
-                if (error2.code == ALAssetsLibraryAccessUserDeniedError)
-                {
-                    saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
-                }
-                else
-                {
-                    saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
-                }
-                
-                //Pop up a notification
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                message:saveFail
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                
-            }
-            
-        }];
-
+         {
+             
+             if (error2)
+             {
+                 NSLog(@"ERROR: the image failed to be written");
+                 
+                 NSString *saveFail;
+                 
+                 if (error2.code == ALAssetsLibraryAccessUserDeniedError)
+                 {
+                     saveFail = NSLocalizedString(@"ImageSavePermissionsFail", @"ImageSavePermissionsFail");
+                 }
+                 else
+                 {
+                     saveFail = NSLocalizedString(@"ImageSaveFail", @"ImageSaveFail");
+                 }
+                 
+                 //Pop up a notification
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:saveFail
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+                 [alert show];
+                 
+             }
+             
+         }];
+        
         NSAssert(_imageSelected, @"Attempting to share a nil image in _imageSelected");
         if ([Ostetso isInternetReachable])
         {
@@ -1350,7 +1326,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             [self setActivityIndicatorAnimating:NO];
             
             [Ostetso shareImage: _imageSelected];
-
+            
             [self resignFirstResponder];
             
             [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -1371,7 +1347,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     else
     {
         NSAssert(_image, @"Attempting to share a nil image");
- 
+        
         if ([Ostetso isInternetReachable])
         {
             _shareDialogActive = YES;
@@ -1411,15 +1387,15 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     {
         void (*setAmt)(id, SEL, CGFloat) = (void (*)(id, SEL, CGFloat)) objc_msgSend;
         setAmt(filterView.filter, NSSelectorFromString(amountMethodName), amount);
-
-     }
+        
+    }
     
     // Checking if image is from native gallery and then applying effect on image
     if ([self.getImage isEqualToString:@"fromGallery"])
     {
         [_filterView.view setHidden:YES];
         // Checking if we need to reload image on _previewImageView or not
-        if (reloadImage==YES)
+        if (_reloadImage==YES)
         {
             _stillImagePicture=[[GPUImagePicture alloc]initWithImage:_selectedImage];
         }
@@ -1434,9 +1410,9 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
             [_foregroundPicture addTarget:filterView.filter atTextureLocation: 1];
         }
         
-        reloadImage=NO;
+        _reloadImage=NO;
     }
-
+    
 }
 
 - (IBAction)effectAmountValueChanged:(id)sender
@@ -1464,7 +1440,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
      {
          _effectSelectionView.frame = frame;
      }
-     completion:^(BOOL finished)
+                     completion:^(BOOL finished)
      {
      }];
 }
@@ -1472,10 +1448,10 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 - (void) infoButtonPressed
 {
     [Ostetso showGallery];
-  /*  [_camera pauseCameraCapture];
-    FFInfoDialogVC *infoDlg = [[FFInfoDialogVC alloc] init];
-    [infoDlg setFPViewController: self];
-    [self.navigationController pushViewController:infoDlg animated:YES]; */
+    /*  [_camera pauseCameraCapture];
+     FFInfoDialogVC *infoDlg = [[FFInfoDialogVC alloc] init];
+     [infoDlg setFPViewController: self];
+     [self.navigationController pushViewController:infoDlg animated:YES]; */
 }
 
 #pragma mark UIGestureRecognizer delegate methods
@@ -1484,7 +1460,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
 {
     if (_capturedImageView.hidden == NO) return NO;    // don't accept gesture if we're previewing a captured image
     
-	return YES;
+    return YES;
 }
 
 - (BOOL) gestureRecognizer : (UIGestureRecognizer *) gestureRecognizer shouldReceiveTouch : (UITouch *) touch
@@ -1494,7 +1470,7 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
     CGRect selViewRect = _effectSelectionView.frame;
     BOOL ptInSelView = CGRectContainsPoint(selViewRect, locInSelView);
     if (ptInSelView) return NO;
-
+    
     
     if ([touch.view isKindOfClass:[UISlider class]] ||
         touch.view == _effectSelectionView)
