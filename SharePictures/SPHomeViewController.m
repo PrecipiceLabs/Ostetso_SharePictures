@@ -12,29 +12,28 @@
 #import "SPViewController.h"
 
 @implementation SPHomeViewController
-@synthesize isIPad= _isIPad;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    _isIPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
-    
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=YES;
 }
 
 // User selected the info button
-- (IBAction)infoTapped:(id)sender {
+- (IBAction)infoTapped:(id)sender
+{
     SPInfoDialogVC *infoDlg = [[SPInfoDialogVC alloc] init];
-    [infoDlg setFPViewController: self];
     self.navigationController.navigationBarHidden=NO;
     [self.navigationController pushViewController:infoDlg animated:YES];
 }
@@ -54,7 +53,7 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    viewController.getImage=@"fromCamera";
+    viewController.imageSourceCamera = YES;
     [viewController setCameraCaptureState: YES];
     [self.navigationController pushViewController:viewController animated:YES];
 
@@ -101,7 +100,7 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     nav.navigationBar.barStyle = UIBarStyleBlackTranslucent; //UIBarStyleBlack;
-    viewController.getImage=@"fromGallery";
+    viewController.imageSourceCamera=NO;
 
     viewController.selectedImage=chosenImage;
     [viewController setCameraCaptureState: NO];

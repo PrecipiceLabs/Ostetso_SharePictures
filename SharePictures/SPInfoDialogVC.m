@@ -129,13 +129,7 @@
     
     [self setupNavbarGestureRecognizer];
 
-    if (_ffVC.isIPad)
-    {
-        CGRect ipadFrame = _ffVC.view.frame;
-        self.view.frame = ipadFrame;
-    }
-    
-#if 0   // iOS 5.0 and later  
+#if 0   // iOS 5.0 and later
     UIScrollView *scrollView = _webView.scrollView;
     scrollView.alwaysBounceHorizontal = NO;
     scrollView.directionalLockEnabled = YES;
@@ -157,11 +151,9 @@
 - (void)viewDidUnload
 {
     _webView = nil;
-    _activityIndicator = nil;
+
     [super viewDidUnload];
-    
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 - (BOOL)shouldAutorotate
@@ -183,25 +175,6 @@
 {
 }
 
-- (void) allowInteraction: (BOOL) allow
-{
-    if (allow)
-    {
-        [_activityIndicator stopAnimating];   
-    }
-    else
-    {
-        [_activityIndicator startAnimating];
-    }
-    
-    [_webView setUserInteractionEnabled: allow];
-    //[_navigationBar setUserInteractionEnabled: allow];
-}
-
-- (void) setFPViewController: (SPHomeViewController *)ffVC
-{
-    _ffVC = ffVC;
-}
 
 
 @end

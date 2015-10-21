@@ -10,6 +10,7 @@
 		30139BAC16272D6100B0547C /* SPInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* SPInfoDialogVC.m */; };
 		30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */; settings = {ASSET_TAGS = (); }; };
 		30200F501BD1ACCF002955FD /* SPFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4F1BD1ACCF002955FD /* SPFilterView.m */; settings = {ASSET_TAGS = (); }; };
+		30200F511BD6C32E002955FD /* SharePictures_InfoPage_Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659D1939428C000B79BE /* SharePictures_InfoPage_Banner.png */; settings = {ASSET_TAGS = (); }; };
 		302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */; };
 		302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */; };
 		302F3EC41627885F00DA4C07 /* SPInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* SPInfoDialogVC.xib */; };
@@ -473,6 +474,7 @@
 				B95ACA081AADC5E7004F09FC /* GotoGallery_HomescreenButton@2x.png in Resources */,
 				E41465961939426A000B79BE /* SharePictures_Info.html in Resources */,
 				B9AC53F71AAF201B00F5A9A3 /* SharePictures_HomePage_Banner@2x.png in Resources */,
+				30200F511BD6C32E002955FD /* SharePictures_InfoPage_Banner.png in Resources */,
 				E4EA49F61624D4BB00BC3F44 /* FlashToggle@2x.png in Resources */,
 				302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */,
 				B95ACA001AADC569004F09FC /* UseCamera_HomescreenButton@2x.png in Resources */,

@@ -13,11 +13,9 @@
 
 @interface SPHomeViewController : UIViewController <OstetsoDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
-    BOOL _oldDeviceModel;  // iPhone4, iPad2, or iPod2 or prior
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *galleryButton;
-@property BOOL isIPad;
 
 - (IBAction)infoTapped:(id)sender;
 - (IBAction)cameraTapped:(id)sender;

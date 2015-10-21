@@ -40,9 +40,6 @@ typedef enum
     NSMutableArray      *_sortedEffectTitles;
     NSString            *_currentEffect;
     
-    // Sharing
-    BOOL _shareDialogActive;
-
     // Outlets
     __weak IBOutlet UIImageView             *_capturedImageView;
     __weak IBOutlet UIToolbar               *_toolbar;
@@ -65,42 +62,24 @@ typedef enum
     UISwipeGestureRecognizer               *_swipeRightRecognizer;
     UISwipeGestureRecognizer               *_swipeLeftRecognizer;
 
-    CGPoint                         _pinchStartScale;
-    float _lastRotation;
-    float _lastScaleX, _lastScaleY;
-    
-    CGPoint                         _overlayScale;
-    CGPoint                         _aspectRatioCorrection;    // Effects are created at 480x640, need to scale to correct for differences at other ARs
-	CGPoint							_dragStartPos;
-	CGPoint							_xlateStartPos;
-    CGSize                          _cameraRes;
-    float                           _videoToDisplayScale;
-    CGPoint                         _flipScale;
     PanStatus                       _panStatus;
     CGRect                          _origFilterViewFrame;
     CGRect                          _origTempViewFrame;
-    double                          _timeToSetNewEffect;
-
     
     // Image stuff
-    CMSampleBufferRef              _lastSample;
     UIImage                        *_image;
     UIImage                        *_imageSelected;
-    int                            _setOverlayPending;
     
     // State
     BOOL                            _isSavingImage;
-    BOOL                            _frontCamera;
-    BOOL                            _showEffectsPalette;
     BOOL                            _oldDeviceModel;  // iPhone4, iPad2, or iPod2 or prior
     BOOL                            _reloadImage;     // To check the need of reloading _selectedImage on GPUImageView after saving image
 
 }
 
-@property BOOL isIPad;
-@property (nonatomic, weak) UIView *effectSelectionView;
 
 - (void) setCameraCaptureState: (BOOL) cameraActive;
+
 - (IBAction)captureImage:(id)sender;
 - (IBAction)switchCamera:(id)sender;
 - (IBAction)toggleFlash:(id)sender;
@@ -108,14 +87,15 @@ typedef enum
 - (IBAction)shareImage:(id)sender;
 - (IBAction)effectAmountValueChanged:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIView *effectSelectionView;
+@property (strong, nonatomic) IBOutlet GPUImageView *previewImageView; // To show the image into the effect preview mode
+
 @property (nonatomic, strong) CMMotionManager *motionManager;          // To get accelerator rotation
-@property (nonatomic) UIInterfaceOrientation deviceOrientation;
-@property (nonatomic ,strong) NSString *checkOrientation;              // Putting rotation string to compare deviceOrientation
-@property (strong,nonatomic) NSString *getImage;                       // Passing string to differentiate between native gallery and live camera mode
+@property (nonatomic) UIInterfaceOrientation deviceOrientation;        // The current device orientation
+@property (nonatomic) BOOL imageSourceCamera;                          // YES if we are using the camera, NO if we are using an image from the camera roll
 @property (strong,nonatomic) UIImage *selectedImage;                   // To get image selected from native Gallery.
 @property (strong,nonatomic) SPFilterView *backGroundFilter;           // Declared this filterView to get the effect to be applied on image while saving
 @property (strong,nonatomic) GPUImagePicture *stillImagePicture;       // Declared this property to apply filter on image selected from cameraRoll
-@property (strong, nonatomic) IBOutlet GPUImageView *previewImageView; // To show the image into the effect preview mode
-@property (nonatomic,strong) GPUImagePicture *foregroundPicture;
+@property (nonatomic,strong) GPUImagePicture *foregroundPicture;       // Used if an effect loads an auxillary image
 
 @end

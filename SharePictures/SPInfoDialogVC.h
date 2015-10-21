@@ -12,15 +12,8 @@
 
 @interface SPInfoDialogVC : UIViewController <UIWebViewDelegate>
 {
-    SPHomeViewController *_ffVC;
-
-    IBOutlet UIActivityIndicatorView *_activityIndicator;
-
     IBOutlet UIWebView *_webView;
-    
-    NSString *_currentHelpEvent;
 }
 
-- (void) setFPViewController: (SPHomeViewController *)ffVC;
 
 @end
