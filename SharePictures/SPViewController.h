@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "GPUImage.h"
 #import <CoreMotion/CoreMotion.h>
-#define UPLOAD_IMAGE_MAX_DIMENSION 640
 
 @class SPEffectInfo;
 @class SPFilterView;
