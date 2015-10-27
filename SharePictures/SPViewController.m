@@ -1291,18 +1291,43 @@ NSInteger finderSortWithLocale(id string1, id string2, void *locale)
         // Applying effect to save image to gallery
         UIImage *tempImage = [self fixRotation: _selectedImage];
         
-        GPUImagePicture *gpui = [[GPUImagePicture alloc] initWithImage: tempImage];
-        [_backGroundFilter.filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(tempImage.size.width, tempImage.size.height)];
+        // Rebuild the effect chain but process at full resolution
+        GPUImageFilter *filter = [[NSClassFromString([_filterView.effect getEffectClassName]) alloc] init];
         
-        [gpui addTarget:_backGroundFilter.filter];
-        [gpui processImage];
-        _imageSelected=[_backGroundFilter.filter imageFromCurrentlyProcessedOutput];
+        GPUImagePicture *filterImage = [[GPUImagePicture alloc]initWithImage: tempImage];
+        [filter forceProcessingAtSizeRespectingAspectRatio:CGSizeMake(tempImage.size.width, tempImage.size.height)];
+        [filterImage addTarget: filter];
+        
+        GPUImagePicture *foregroundPicture = nil;
+        NSString *foregroundImageFile = [_filterView.effect getForegroundImageFile];
+        if (foregroundImageFile)
+        {
+            NSString *fxImagePath = [SPEffectInfo getEffectsImagePath];
+            NSString *imagePath = [fxImagePath stringByAppendingPathComponent: foregroundImageFile];
+            UIImage *inputImage = [UIImage imageNamed:imagePath];
+            foregroundPicture = [[GPUImagePicture alloc] initWithImage:inputImage smoothlyScaleOutput:YES];
+            [foregroundPicture processImage];
+            [foregroundPicture addTarget: filter atTextureLocation: 1];
+        }
+        
+        NSString *amountMethodName = [_backGroundFilter.effect getAmountMethodName];
+        if (amountMethodName)
+        {
+            void (*setAmt)(id, SEL, CGFloat) = (void (*)(id, SEL, CGFloat)) objc_msgSend;
+            setAmt(filter, NSSelectorFromString(amountMethodName), _effectAmountSlider.value);
+        }
+
+        
+        [filterImage processImage];
+
+        _imageSelected=[filter imageFromCurrentlyProcessedOutput];
         
         _imageSelected=[self fixRotation:_imageSelected];
         
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         
         NSData *imageData = [_backGroundFilter.effect saveAsPng] ? UIImagePNGRepresentation(_imageSelected) : UIImageJPEGRepresentation(_imageSelected, 8.0);
+
         [library writeImageDataToSavedPhotosAlbum: imageData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error2)
          {
              
