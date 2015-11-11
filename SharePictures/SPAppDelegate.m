@@ -10,6 +10,7 @@
 #import "Reachability.h"
 #import "SPViewController.h"
 #import "SPHomeViewController.h"
+#import "SPCustomizeOstetso.h"
 
 // Include the Ostetso framework header
 #import "Ostetso/Ostetso.h"
@@ -63,6 +64,8 @@ void uncaughtExceptionHandler(NSException *exception)
     
     // Tell Ostetso that we finished launching the app
     [Ostetso applicationDidFinishLaunchingWithOptions: launchOptions];
+    
+    [SPCustomizeOstetso customizeOstetso];
     
     return YES;
 }

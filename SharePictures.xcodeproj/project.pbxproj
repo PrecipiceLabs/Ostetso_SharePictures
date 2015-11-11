@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		30139BAC16272D6100B0547C /* SPInfoDialogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30139BAB16272D6100B0547C /* SPInfoDialogVC.m */; };
-		30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */; settings = {ASSET_TAGS = (); }; };
-		30200F501BD1ACCF002955FD /* SPFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4F1BD1ACCF002955FD /* SPFilterView.m */; settings = {ASSET_TAGS = (); }; };
-		30200F511BD6C32E002955FD /* SharePictures_InfoPage_Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659D1939428C000B79BE /* SharePictures_InfoPage_Banner.png */; settings = {ASSET_TAGS = (); }; };
+		30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4A1BCF1827002955FD /* SPHardlightAlphaSwap.m */; };
+		30200F501BD1ACCF002955FD /* SPFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30200F4F1BD1ACCF002955FD /* SPFilterView.m */; };
+		30200F511BD6C32E002955FD /* SharePictures_InfoPage_Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = E414659D1939428C000B79BE /* SharePictures_InfoPage_Banner.png */; };
 		302562281AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562261AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge.png */; };
 		302562291AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 302562271AEEF7E700C1E8FD /* GotoGallery_HomescreenButton_WithBadge@2x.png */; };
 		302F3EC41627885F00DA4C07 /* SPInfoDialogVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302F3EC21627885F00DA4C07 /* SPInfoDialogVC.xib */; };
@@ -19,6 +19,7 @@
 		30479D641624DF620030C250 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30479D621624DF620030C250 /* Localizable.strings */; };
 		30505E311617A02D00DDB111 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30505E301617A02D00DDB111 /* OpenGLES.framework */; };
 		305538391937F5C2002CDA9F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 305538381937F5C2002CDA9F /* libsqlite3.0.dylib */; };
+		30617C641BF156B0000B2C54 /* SPCustomizeOstetso.m in Sources */ = {isa = PBXBuildFile; fileRef = 30617C631BF156B0000B2C54 /* SPCustomizeOstetso.m */; };
 		3061E862161A794C00E437D1 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3061E861161A794C00E437D1 /* CoreImage.framework */; };
 		30772BB21AE079C200CC0B9D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3055383A1937F625002CDA9F /* AdSupport.framework */; };
 		30925ACF1669808C00239956 /* SPEffectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 30925ACE1669808C00239956 /* SPEffectInfo.m */; };
@@ -100,6 +101,8 @@
 		30505E301617A02D00DDB111 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		305538381937F5C2002CDA9F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3055383A1937F625002CDA9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		30617C631BF156B0000B2C54 /* SPCustomizeOstetso.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCustomizeOstetso.m; sourceTree = "<group>"; };
+		30617C651BF156F2000B2C54 /* SPCustomizeOstetso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCustomizeOstetso.h; sourceTree = "<group>"; };
 		3061E861161A794C00E437D1 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		30925ACD1669808C00239956 /* SPEffectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEffectInfo.h; sourceTree = "<group>"; };
 		30925ACE1669808C00239956 /* SPEffectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEffectInfo.m; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 			children = (
 				309CE5691603B14400F1FAF5 /* SPAppDelegate.h */,
 				309CE56A1603B14400F1FAF5 /* SPAppDelegate.m */,
+				30617C631BF156B0000B2C54 /* SPCustomizeOstetso.m */,
+				30617C651BF156F2000B2C54 /* SPCustomizeOstetso.h */,
 				30925ACD1669808C00239956 /* SPEffectInfo.h */,
 				30925ACE1669808C00239956 /* SPEffectInfo.m */,
 				30200F4E1BD1ACCF002955FD /* SPFilterView.h */,
@@ -547,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30200F4B1BCF1827002955FD /* SPHardlightAlphaSwap.m in Sources */,
+				30617C641BF156B0000B2C54 /* SPCustomizeOstetso.m in Sources */,
 				309CE5671603B14400F1FAF5 /* main.m in Sources */,
 				309CE56B1603B14400F1FAF5 /* SPAppDelegate.m in Sources */,
 				309CE56E1603B14400F1FAF5 /* SPViewController.m in Sources */,
