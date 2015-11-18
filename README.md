@@ -23,7 +23,7 @@ Instructions for building
 - Once you have downloaded the Ostetso SDK and the SharePictures source code, unzip the Ostetso SDK and place both the Ostetso.framework and Ostetso.bundle files into the Ostetso directory within your SharePictures source directory.
 - Follow the instructions at [Ostetso.com/sdk](https://www.ostetso.com/sdk) to add register a new app and obtain an API Key and App ID.
 - Open up the **SharePictures.xcworkspace** file in Xcode.  **Note: do not use the xcodeproj file since it won’t work with CocoaPods.**
-- Edit the file FFAppDelegate.m and replace the placeholder strings with your actual API Key and App ID that you were provided when you registered a new app with Ostetso.com.  
+- Edit the file OstetsoConfig.h and replace the placeholder strings with your actual API Key and App ID that you were provided when you registered a new app with Ostetso.com.  
 - Build, run and SHARE PICTURES!
 - See [Ostetso Support](https://www.ostetso.com/support) if you need assistance or have questions.
 
