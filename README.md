@@ -6,7 +6,7 @@ About
 
 **SharePictures** is a project used to demonstrate how to integrate the Ostetso framework into a photo sharing app.  It also happens to be a *FULL FEATURED PHOTO SHARING APP* similar to Instagram.  If you are just learning how to write iOS apps and would like to start with a simple example, check out SharePictures.  SharePictures uses the [GPUImage SDK](https://github.com/BradLarson/GPUImage) to apply simple image filters to photos and, via Ostetso, share them with other users and friends.
 
-[Ostetso](https://www.ostetso.com) is a *social network SDK* that allows you to easily integrate a full-featured photo sharing social network along with backend services into your iOS apps.  With a few lines of code, simply drop the framework into your app project and you instantaly have a built in social network specifically catering to your users. *For free!* See [Ostetso.com](https://www.ostetso.com) for details.
+[Ostetso](https://www.ostetso.com) is a *social network SDK* (or a social network as a service or SNaaS) that allows you to easily integrate a full-featured photo sharing social network along with backend services into your iOS apps.  With a few lines of code, simply drop the framework into your app project and you instantaly have a built in social network specifically catering to your users. *For free!* See [Ostetso.com](https://www.ostetso.com) for details.
 
 Instructions for building 
 --------------
